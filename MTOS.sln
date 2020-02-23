@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTOS", "MTOS.csproj", "{838BAE4E-442D-4803-8946-2E82A0816FAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{838BAE4E-442D-4803-8946-2E82A0816FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838BAE4E-442D-4803-8946-2E82A0816FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838BAE4E-442D-4803-8946-2E82A0816FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838BAE4E-442D-4803-8946-2E82A0816FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CE9441C-8FB2-4CB8-B7C8-93036ACC5642}
+	EndGlobalSection
+EndGlobal
