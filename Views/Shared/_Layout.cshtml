@@ -1,43 +1,47 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string xTitle = System.Configuration.ConfigurationManager.AppSettings["AppName"];
+    var xFunctionList = new Dictionary<string, string>()
+    {
+        {"CashFlow","結帳/回帳作業"},
+        {"Commodity","商品基本資料維護"},
+        {"DeliveryType","配送方式維護"},
+        {"Home",""},
+        {"Nation","國家基本資料維護"},
+        {"Order","下單交易維護"},
+        {"Purchase","進貨交易維護"},
+        {"Receipt","付款交易維護"},
+        {"Shipper","出貨交易維護"},
+        {"Supplier","供應商基本資料維護"},
+        {"Trading","賣出交易維護"},
+    };
+}
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    <title>@xTitle</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/extjs")
+    @Scripts.Render("~/bundles/customizejs")*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
+        @Html.Partial("_Navigation")
     </div>
+    
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            <p>&copy; @DateTime.Now.Year - @xTitle</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

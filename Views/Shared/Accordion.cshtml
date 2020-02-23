@@ -1,0 +1,20 @@
+﻿@model Tuple<Func<object, object>, string>
+
+<div class="container">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="page-heading">
+                <h4 class="panel-title form-control" style="background-color: #337ab7; color: white; ">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="display: block; color: white;">
+                        <span class="fa fa-search"></span><label style="padding-left: 0.5%;">@Model.Item2</label>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body" style="margin-bottom: 1%;">
+                    @MvcHtmlString.Create(Model.Item1.DynamicInvoke(ViewContext).ToString())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
