@@ -29,3 +29,42 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+<div>
+    <input type="file" name="UploadFile" id="upload" multiple />
+</div>
+
+<script>
+        $(document).ready(function () {
+            $('#upload').on('change', function (e) {
+                //取得檔案
+                var files = e.target.files;
+                if (files.length > 0) {
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+
+                        //可上傳多檔案
+                        for (var x = 0; x < files.length; x++) {
+                            data.append(files[x].name, files[x]);
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("UploadByAjax", "Home")',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (result) {
+                                //console.log(result);
+                                alert(result);
+                            },
+                            error: function (xhr, status) {
+                                console.log("上傳失敗");
+                            }
+                        });
+                    } else {
+                        alert("此瀏覽器不支援HTML5檔案上傳");
+                    }
+                }
+            });
+        });
+</script>
