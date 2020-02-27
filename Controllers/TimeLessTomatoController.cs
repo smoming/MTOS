@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace MTOS.Controllers
 {
-    public class HomeController : BaseController
+    public class TimeLessTomatoController : Controller
     {
+        // GET: TimeLessTomato
         public ActionResult Index()
         {
             return View();

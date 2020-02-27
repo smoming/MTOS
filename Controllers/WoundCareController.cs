@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace MTOS.Controllers
 {
-    public class HomeController : BaseController
+    public class WoundCareController : Controller
     {
+        // GET: WoundCare
         public ActionResult Index()
         {
             return View();

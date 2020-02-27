@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -47,6 +48,12 @@ namespace MTOS
         {
             for (var d = s; d <= s; d = d.AddDays(1))
                 yield return d;
+        }
+
+        static public string GetAppSetting(string key)
+        {
+            return ConfigurationManager.AppSettings.AllKeys.Contains(key) ? 
+                ConfigurationManager.AppSettings.Get(key) : string.Empty;
         }
     }
 }
