@@ -361,7 +361,7 @@
     <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\Accordion.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Upload.cshtml" />
+    <Content Include="Views\Shared\Upload.cshtml" />
     <Content Include="Views\ResearchUse\Index.cshtml" />
     <Content Include="Views\TimeLessTomato\Index.cshtml" />
     <Content Include="Views\WoundCare\Index.cshtml" />

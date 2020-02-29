@@ -20,7 +20,11 @@ namespace MTOS.Controllers
 
         public ActionResult Index()
         {
-            return View(new ReportQueryViewModel() { TradeDate_S = DateTime.Today.AddDays(-7), TradeDate_E = DateTime.Today });
+            return View(new ReportQueryViewModel()
+            {
+                TradeDate_S = DateTime.Today.AddMonths(-1),
+                TradeDate_E = DateTime.Today
+            });
         }
 
         public ActionResult Grid(ReportQueryViewModel filter)

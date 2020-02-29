@@ -41,6 +41,7 @@ namespace MTOS
             //js customize
             bundles.Add(new ScriptBundle("~/bundles/customizejs").Include(
                         "~/Scripts/CustomizeJS.js"));
+
         }
     }
 }

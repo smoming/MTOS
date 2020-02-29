@@ -1,9 +1,41 @@
 ﻿@model PRODUCT_DOCUMENT
 
-@Html.HiddenFor(m => m.GUID)
-@Html.DropDownListBuilder(m => m.PRODUCT_ID, Shared.ProductList(), "產品代碼")
-@Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
-@Html.DropDownListBuilder(m => m.DOCUMENT_TYPE, Shared.DocTypeList(), "文件類型")
-@Html.TextBoxBuilder(m => m.DOCUMENT_NAME, "文件名稱")
-@Html.TextAreaBuilder(m => m.REMARK, "備註")
+@Html.HiddenFor(m => m.GUID, "KEY")
 @Html.HiddenFor(m => m.MODIFY_DATE, "異動日期")
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DropDownListBuilder(m => m.PRODUCT_ID, Shared.ProductList(), "產品代碼")
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownListBuilder(m => m.DOCUMENT_TYPE, Shared.DocTypeList(), "文件類型")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
+        </div>
+        <div class="col-md-3">
+            @Html.Partial("Upload")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.TextBoxBuilder(m => m.DOCUMENT_NAME, "文件名稱")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.TextAreaBuilder(m => m.REMARK, "備註")
+        </div>
+    </div>
+    <div class="row" style="height: 500px">
+        <input id="file-Portrait1" type="file">
+    </div>
+</div>
+
+<style>
+    #DOCUMENT_NAME, #REMARK {
+        max-width: none;
+    }
+</style>
