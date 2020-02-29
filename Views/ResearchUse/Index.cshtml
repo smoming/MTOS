@@ -1,5 +1,36 @@
-﻿
+﻿@model ReportQueryViewModel
+
 <div class="row">
+    @using (Ajax.BeginForm(new AjaxOptions()
+    {
+        Url = Url.Action("Grid"),
+        UpdateTargetId = "GridV",
+        OnSuccess = "SelectReady"
+    }))
+    {
+        @Html.AccordionBuilder(@<text>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.DateBoxBuilder(m => m.TradeDate_S, "報告日期(起)")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DateBoxBuilder(m => m.TradeDate_E, "報告日期(迄)")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListBuilder(m => m.ProductID, Shared.ProductList(), "產品代碼", true)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ButtonBuilder(ButtonType.submit, "btnQuery", "查詢")
+                    </div>
+                </div>
+            </div>
+        </text>, "查詢")
+    }
+</div>
+<div class="row" style="margin-top: 0.5%;">
     <div class="col-md-12">
         @Html.ButtonBuilder(ButtonType.button, "btnCreate", "新增")
     </div>
@@ -24,7 +55,9 @@
     });
 
     function loadGrid() {
-        GridV.load('@Url.Action("Grid")', SelectReady);
+        //GridV.load('@Url.Action("Grid")', SelectReady);
+        claerEdit();
+        $('#btnQuery').click();
     }
 
     function CreateReady() {
@@ -33,7 +66,7 @@
 
     function SelectReady() {
         $('#list tbody tr').on('click', function () {
-            EditV.load('@Url.Action("Edit")', { xGUID: $(this)[0].cells[0].innerText }, EditReady);
+            EditV.load('@Url.Action("Edit")', { xGUID: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
         });
     }
 

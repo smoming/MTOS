@@ -4,17 +4,45 @@
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
             <div class="page-heading">
-                <h4 class="panel-title form-control" style="background-color: #337ab7; color: white; ">
+                <h4 id="panel-title-h4" class="panel-title form-control" style="background-color: #337ab7; color: white; ">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="display: block; color: white;">
                         <span class="fa fa-search"></span><label style="padding-left: 0.5%;">@Model.Item2</label>
                     </a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body" style="margin-bottom: 1%;">
+                <div id="panel-body" class="panel-body">
                     @MvcHtmlString.Create(Model.Item1.DynamicInvoke(ViewContext).ToString())
                 </div>
             </div>
         </div>
     </div>
 </div>
+<style>
+    #panel-title-h4 {
+        margin-bottom: 0rem;
+        
+        border-color: #63A0D4;
+        border-style: solid;
+        border-bottom-width: 0px;
+
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        border-bottom-left-radius: 0rem;
+        border-bottom-right-radius: 0rem;
+    }
+
+    #panel-body {
+        padding: 0.5%;
+
+        border-color: #63A0D4;
+        border-style: solid;
+        border-top-width: 0px;
+        /*background-color: #DFB28B;*/
+
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+</style>

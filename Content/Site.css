@@ -8,8 +8,8 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -24,4 +24,15 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.btn-primary {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    opacity: 0.8;
 }

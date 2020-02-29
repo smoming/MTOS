@@ -54,7 +54,7 @@ namespace MTOS
 
         static public string GetAppSetting(string key)
         {
-            return ConfigurationManager.AppSettings.AllKeys.Contains(key) ? 
+            return ConfigurationManager.AppSettings.AllKeys.Contains(key) ?
                 ConfigurationManager.AppSettings.Get(key) : string.Empty;
         }
 
@@ -65,6 +65,27 @@ namespace MTOS
              typeof(DescriptionAttribute), false);
             if (attributes.Length > 0) return attributes[0].Description;
             else return source.ToString();
+        }
+
+        public static T ToEnum<T>(this string val)
+            where T : struct, IConvertible
+        {
+            if (typeof(T).IsEnum.Not())
+            {
+                throw new ArgumentException("T must be an enumerated type");
+            }
+
+            return (T)Enum.Parse(typeof(T), val);
+        }
+
+        public static List<T> GetEnumList<T>()
+            where T : struct, IConvertible
+        {
+            if (typeof(T).IsEnum.Not())
+            {
+                throw new ArgumentException("T must be an enumerated type");
+            }
+            return Enum.GetValues(typeof(T)).Cast<T>().ToList();
         }
     }
 }

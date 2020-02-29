@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTOS.Extend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,14 +9,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
 namespace MTOS
-{
-    public enum ButtonType
-    {
-        button,
-        submit,
-        reset
-    }
-
+{    
     static public class ViewHelper
     {
         static public MvcHtmlString ButtonBuilder(this HtmlHelper helper,

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTOS.Extend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,14 +8,6 @@ using System.Web.Mvc;
 
 namespace MTOS.Models
 {
-    public enum DocType
-    {
-        [Description("研究報告")]
-        research,
-        [Description("使用個案報告")]
-        usecases
-    }
-
     public class Shared
     {
         static private MTDBEntities GetEntity()

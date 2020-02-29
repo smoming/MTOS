@@ -20,12 +20,12 @@ namespace MTOS.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(new ReportQueryViewModel() { TradeDate_S = DateTime.Today.AddDays(-7), TradeDate_E = DateTime.Today });
         }
 
-        public ActionResult Grid()
+        public ActionResult Grid(ReportQueryViewModel filter)
         {
-            return PartialView(_Service.LookupPRODUCT_DOCUMENT());
+            return PartialView(_Service.LookupPRODUCT_DOCUMENT(filter));
         }
 
         public ActionResult Get(string xGUID)

@@ -134,14 +134,25 @@ namespace MTOS.Models
 
         #region PRODUCT_DOCUMENT
 
-        public IQueryable<PRODUCT_DOCUMENT> LookupPRODUCT_DOCUMENT()
+        public IQueryable<PRODUCT_DOCUMENT> LookupPRODUCT_DOCUMENT(ReportQueryViewModel filter)
         {
-            return _Entity.PRODUCT_DOCUMENT.AsNoTracking();
+            var q = _Entity.PRODUCT_DOCUMENT.AsNoTracking().AsQueryable();
+            if (filter.IsNotNull())
+            {
+                if (filter.TradeDate_S.HasValue)
+                    q = q.Where(w => w.REPORT_DATE >= filter.TradeDate_S.Value);
+                if (filter.TradeDate_E.HasValue)
+                    q = q.Where(w => w.REPORT_DATE <= filter.TradeDate_E.Value);
+                if (filter.ProductID.IsNotNullOrEmpty())
+                    q = q.Where(w => w.PRODUCT_ID == filter.ProductID);
+            }
+
+            return q;
         }
 
         public PRODUCT_DOCUMENT GetPRODUCT_DOCUMENT(string xGUID)
         {
-            return LookupPRODUCT_DOCUMENT().SingleOrDefault(s => s.GUID == xGUID);
+            return LookupPRODUCT_DOCUMENT(null).SingleOrDefault(s => s.GUID == xGUID);
         }
 
         async public Task<string> AddPRODUCT_DOCUMENT(PRODUCT_DOCUMENT item)

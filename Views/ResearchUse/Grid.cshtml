@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<PRODUCT_DOCUMENT>
+@{ 
+    Dictionary<string, string> DocList = Extensions.GetEnumList<DocType>()
+        .ToDictionary(k => k.ToString(), v => v.GetDescription());
+    Dictionary<string, string> ProductList = Shared.ProductList()
+        .ToDictionary(k => k.Value.ToString(), v => v.Text);
 
+}
 <div class="table-responsive">
     <table id="list" class="table table-bordered table-striped table-hover table-condensed">
         <thead>
             <tr>
                 <th hidden>KEY</th>
-                <th>產品代碼</th>
+                <th>產品名稱</th>
                 <th>報告日期</th>
                 <th>文件類型</th>
                 <th>文件名稱</th>
@@ -16,9 +22,9 @@
             {
             <tr class="alert-info">
                 <td hidden>@Html.DisplayFor(m => it.GUID)</td>
-                <td>@Html.DisplayFor(m => it.PRODUCT_ID)</td>
+                <td>@Html.DisplayFor(m => ProductList[it.PRODUCT_ID])</td>
                 <td>@Html.DisplayFor(m => it.REPORT_DATE)</td>
-                <td>@Html.DisplayFor(m => it.DOCUMENT_TYPE)</td>
+                <td>@Html.DisplayFor(m => DocList[it.DOCUMENT_TYPE])</td>
                 <td>@Html.DisplayFor(m => it.DOCUMENT_NAME)</td>
             </tr>
             }
