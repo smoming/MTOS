@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace MTOS
@@ -54,6 +56,15 @@ namespace MTOS
         {
             return ConfigurationManager.AppSettings.AllKeys.Contains(key) ? 
                 ConfigurationManager.AppSettings.Get(key) : string.Empty;
+        }
+
+        public static string GetDescription(this Enum source)
+        {
+            FieldInfo fi = source.GetType().GetField(source.ToString());
+            DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
+             typeof(DescriptionAttribute), false);
+            if (attributes.Length > 0) return attributes[0].Description;
+            else return source.ToString();
         }
     }
 }

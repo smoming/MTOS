@@ -1,0 +1,9 @@
+﻿@model PRODUCT_DOCUMENT
+
+@Html.HiddenFor(m => m.GUID)
+@Html.DropDownListBuilder(m => m.PRODUCT_ID, Shared.ProductList(), "產品代碼")
+@Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
+@Html.DropDownListBuilder(m => m.DOCUMENT_TYPE, Shared.DocTypeList(), "文件類型")
+@Html.TextBoxBuilder(m => m.DOCUMENT_NAME, "文件名稱")
+@Html.TextAreaBuilder(m => m.REMARK, "備註")
+@Html.HiddenFor(m => m.MODIFY_DATE, "異動日期")

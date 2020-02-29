@@ -7,7 +7,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace MTOS.Extend
+namespace MTOS
 {
     public enum ButtonType
     {

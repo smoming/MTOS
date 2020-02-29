@@ -64,6 +64,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -134,8 +136,9 @@
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ResearchUseController.cs" />
     <Compile Include="Controllers\TimeLessTomatoController.cs" />
     <Compile Include="Controllers\WoundCareController.cs" />
@@ -144,6 +147,35 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\COMPANY_BASIC_INFO.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTACT_US.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MTEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MTEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MTEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MTService.cs" />
+    <Compile Include="Models\PRODUCT.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRODUCT_DOCUMENT.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,11 +187,27 @@
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="DocRepo\readme.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\MTEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MTEntity.Context.cs</LastGenOutput>
+      <DependentUpon>MTEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MTEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MTEntity.edmx</DependentUpon>
+      <LastGenOutput>MTEntity.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -174,6 +222,8 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\bootstrap3-typeahead.js" />
+    <Content Include="Scripts\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\CustomizeJS.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -184,12 +234,21 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <EntityDeploy Include="Models\MTEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MTEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MTEntity.edmx.diagram">
+      <DependentUpon>MTEntity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -297,11 +356,18 @@
     <Content Include="Views\ResearchUse\Index.cshtml" />
     <Content Include="Views\TimeLessTomato\Index.cshtml" />
     <Content Include="Views\WoundCare\Index.cshtml" />
-    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\ResearchUse\Grid.cshtml" />
+    <Content Include="Views\ResearchUse\Create.cshtml" />
+    <Content Include="Views\ResearchUse\Edit.cshtml" />
+    <Content Include="Views\ResearchUse\EditorTemplates\PRODUCT_DOCUMENT.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\EditorTemplates\PRODUCT.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Grid.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DocRepo\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

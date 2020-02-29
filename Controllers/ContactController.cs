@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MTOS.Controllers
 {
-    public class ContactUsController : Controller
+    public class ContactController : Controller
     {
         // GET: ContactUs
         public ActionResult Index()
