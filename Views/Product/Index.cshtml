@@ -1,6 +1,8 @@
-﻿
+﻿@model SERIES
+
 <div class="row">
     <div class="col-md-12">
+        @Html.DropDownListBuilder(m => m.ID, Shared.SeriesList(), "系列")
         @Html.ButtonBuilder(ButtonType.button, "btnCreate", "新增")
     </div>
 </div>
@@ -19,30 +21,40 @@
         loadGrid();
 
         $('#btnCreate').on('click', function () {
-            EditV.load('@Url.Action("Create")', CreateReady);
+            EditV.load('@Url.Action("Create")', { xSERIES: $('#ID').val() }, CreateReady);
+        });
+
+        $('#ID').on('change', function () {
+            loadGrid();
+            claerEdit();
         });
     });
 
     function loadGrid() {
-        GridV.load('@Url.Action("Grid")', SelectReady);
+        GridV.load('@Url.Action("Grid")', { xSERIES: $('#ID').val() }, SelectReady);
     }
 
     function CreateReady() {
+        EditV.find('select#SERIES').attr('disabled', true).attr('id', 'SERIES_FAKE');
         eventCancal();
     }
 
     function SelectReady() {
         $('#list tbody tr').on('click', function () {
-            EditV.load('@Url.Action("Edit")', { xID: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
+            EditV.load('@Url.Action("Edit")', {
+                xSERIES: $(this)[0].cells[0].innerText.replace(/\n/g, ""),
+                xID: $(this)[0].cells[1].innerText.replace(/\n/g, "")
+            }, EditReady);
         });
     }
 
     function EditReady() {
+        EditV.find('select#SERIES').attr('disabled', true).attr('id', 'SERIES_FAKE');
         EditV.find('#ID').attr('readonly', true);
 
         eventCancal();
         $('#btnDelete').on('click', function () {
-            $.post('@Url.Action("Delete")', { xID: EditV.find('#ID').val() }, onSaved);
+            $.post('@Url.Action("Delete")', { xSERIES: EditV.find('#SERIES').val(), xID: EditV.find('#ID').val() }, onSaved);
         });
     }
 

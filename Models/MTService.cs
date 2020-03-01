@@ -103,16 +103,49 @@ namespace MTOS.Models
 
         #endregion
 
-        #region PRODUCT
+        #region SERIES
 
-        public IQueryable<PRODUCT> LookupPRODUCT()
+        public IQueryable<SERIES> LookupSERIES()
         {
-            return _Entity.PRODUCT.AsNoTracking();
+            return _Entity.SERIES.AsNoTracking().AsQueryable();
         }
 
-        public PRODUCT GetPRODUCT(string xID)
+        public SERIES GetSERIES(string xID)
         {
-            return LookupPRODUCT().SingleOrDefault(s => s.ID == xID);
+            return LookupSERIES().SingleOrDefault(s => s.ID == xID);
+        }
+
+        async public Task<string> AddSERIES(SERIES item)
+        {
+            return await Save<SERIES>(EntityState.Added, item);
+        }
+
+        async public Task<string> UpdateSERIES(SERIES item)
+        {
+            return await Save<SERIES>(EntityState.Modified, item);
+        }
+
+        async public Task<string> DeleteSERIES(SERIES item)
+        {
+            return await Save<SERIES>(EntityState.Deleted, item);
+        }
+
+        #endregion
+
+        #region PRODUCT
+
+        public IQueryable<PRODUCT> LookupPRODUCT(string xSERIES = null)
+        {
+            var q = _Entity.PRODUCT.AsNoTracking().AsQueryable();
+            if (xSERIES.IsNotNullOrEmpty())
+                q = q.Where(w => w.SERIES == xSERIES);
+
+            return q;
+        }
+
+        public PRODUCT GetPRODUCT(string xSERIES, string xID)
+        {
+            return LookupPRODUCT(xSERIES).SingleOrDefault(s => s.ID == xID);
         }
 
         async public Task<string> AddPRODUCT(PRODUCT item)
@@ -143,6 +176,8 @@ namespace MTOS.Models
                     q = q.Where(w => w.REPORT_DATE >= filter.TradeDate_S.Value);
                 if (filter.TradeDate_E.HasValue)
                     q = q.Where(w => w.REPORT_DATE <= filter.TradeDate_E.Value);
+                if (filter.Series.IsNotNullOrEmpty())
+                    q = q.Where(w => w.SERIES == filter.Series);
                 if (filter.ProductID.IsNotNullOrEmpty())
                     q = q.Where(w => w.PRODUCT_ID == filter.ProductID);
                 if (filter.DocumentType.IsNotNullOrEmpty())

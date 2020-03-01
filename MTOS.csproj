@@ -162,9 +162,9 @@
       <DependentUpon>MTEntity.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MTEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>MTEntity.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\MTEntity.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -179,6 +179,9 @@
       <DependentUpon>MTEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReportQueryViewModel.cs" />
+    <Compile Include="Models\SERIES.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Shared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -204,13 +207,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\MTEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MTEntity.Context.cs</LastGenOutput>
       <DependentUpon>MTEntity.edmx</DependentUpon>
+      <LastGenOutput>MTEntity.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\MTEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MTEntity.edmx</DependentUpon>
       <LastGenOutput>MTEntity.cs</LastGenOutput>
+      <DependentUpon>MTEntity.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -239,6 +242,11 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <EntityDeploy Include="Models\MTEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MTEntity.Designer.cs</LastGenOutput>
@@ -246,11 +254,6 @@
     <Content Include="Models\MTEntity.edmx.diagram">
       <DependentUpon>MTEntity.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

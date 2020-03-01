@@ -12,16 +12,10 @@ namespace MTOS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT_DOCUMENT
+    public partial class SERIES
     {
-        public string GUID { get; set; }
-        public string SERIES { get; set; }
-        public string PRODUCT_ID { get; set; }
-        public System.DateTime REPORT_DATE { get; set; }
-        public string DOCUMENT_TYPE { get; set; }
-        public string DOCUMENT_NAME { get; set; }
-        public string EXTENSION { get; set; }
-        public string REMARK { get; set; }
-        public System.DateTime MODIFY_DATE { get; set; }
+        public string ID { get; set; }
+        public string NAME { get; set; }
+        public string OFFICIAL_SITE { get; set; }
     }
 }

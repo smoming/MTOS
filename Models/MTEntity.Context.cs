@@ -29,5 +29,6 @@ namespace MTOS.Models
         public virtual DbSet<CONTACT_US> CONTACT_US { get; set; }
         public virtual DbSet<PRODUCT> PRODUCT { get; set; }
         public virtual DbSet<PRODUCT_DOCUMENT> PRODUCT_DOCUMENT { get; set; }
+        public virtual DbSet<SERIES> SERIES { get; set; }
     }
 }

@@ -1,9 +1,8 @@
-﻿@model Tuple<PRODUCT, string, IEnumerable<PRODUCT_DOCUMENT>>
+﻿@model Tuple<SERIES, string, IEnumerable<PRODUCT_DOCUMENT>>
 @{
     Dictionary<string, string> DocList = Extensions.GetEnumList<DocType>()
         .ToDictionary(k => k.ToString(), v => v.GetDescription());
-    Dictionary<string, string> ProductList = Shared.ProductList()
-        .ToDictionary(k => k.Value.ToString(), v => v.Text);
+    Dictionary<string, string> ProductList = Shared.ProductMapping();
 
 }
 <div class="row">
@@ -27,7 +26,7 @@
                     {
                         <tr class="alert-info">
                             <td hidden>@Html.DisplayFor(m => it.GUID)</td>
-                            <td>@Html.DisplayFor(m => ProductList[it.PRODUCT_ID])</td>
+                            <td>@Html.DisplayFor(m => ProductList[it.SERIES + it.PRODUCT_ID])</td>
                             <td>@Html.DisplayFor(m => it.REPORT_DATE)</td>
                             <td>@Html.DisplayFor(m => it.DOCUMENT_NAME)</td>
                             <td>@Html.ActionLink("下載檔案", "DownloadFile", "ResearchUse", new { xGUID = it.GUID }, new { @class = "btn btn-primary btn-sm" })</td>

@@ -18,7 +18,7 @@
                         @Html.DateBoxBuilder(m => m.TradeDate_E, "報告日期(迄)")
                     </div>
                     <div class="col-md-3">
-                        @Html.DropDownListBuilder(m => m.ProductID, Shared.ProductList(), "產品代碼", true)
+                        @Html.DropDownListBuilder(m => m.Series, Shared.SeriesList(), "系列", true)
                     </div>
                 </div>
                 <div class="row">
@@ -36,8 +36,10 @@
     </div>
 </div>
 <div class="row" style="margin-top: 0.5%;">
-    <div id="GridV" class="col-md-6"></div>
-    <div id="EditV" class="col-md-6"></div>
+    <div id="EditV" class="col-md-12"></div>
+</div>
+<div class="row" style="margin-top: 0.5%;">
+    <div id="GridV" class="col-md-12"></div>
 </div>
 
 <script>
@@ -68,12 +70,14 @@
     function CreateReady() {
         eventCancal();
         uploadReady();
+        reloadProductList();
     }
 
     function SelectReady() {
         $('#list tbody tr').on('click', function () {
             EditV.load('@Url.Action("Edit")', { xGUID: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
         });
+        claerEdit();
     }
 
     function EditReady() {
@@ -84,6 +88,7 @@
         $('#btnDelete').on('click', function () {
             $.post('@Url.Action("Delete")', { xGUID: EditV.find('#GUID').val() }, onSaved);
         });
+        reloadProductList();
     }
 
     function onSaved(d) {
@@ -108,6 +113,24 @@
                 var ext = filename.split('.').pop();
                 $("#DOCUMENT_NAME").val(filename.replace("." + ext, ""));
             }
+        });
+    }
+
+    function reloadProductList() {
+        $('#SERIES').on('change', function () {
+            $.post('@Url.Action("listProduct")', { xSERIES: EditV.find('#SERIES').val() }, function (d) {
+                var data = d.data;
+                //console.log(data);
+                var $select = EditV.find("select#PRODUCT_ID");
+                $select.empty();
+                for (var i = 0; i < data.length; i++) {
+                    //console.log(data[i]);
+                    var o = $('<option/>', { value: data[i].ID })
+                        .text(data[i].NAME)
+                        .prop('selected', i == 0);
+                    o.appendTo($select);
+                }
+            });
         });
     }
 

@@ -20,27 +20,30 @@ namespace MTOS.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(_Service.LookupSERIES().FirstOrDefault());
         }
 
-        public ActionResult Grid()
+        public ActionResult Grid(string xSERIES)
         {
-            return PartialView(_Service.LookupPRODUCT());
+            return PartialView(_Service.LookupPRODUCT(xSERIES));
         }
 
-        public ActionResult Get(string xID)
+        public ActionResult Get(string xSERIES, string xID)
         {
-            return PartialView(_Service.GetPRODUCT(xID));
+            return PartialView(_Service.GetPRODUCT(xSERIES, xID));
         }
 
-        public ActionResult Create()
+        public ActionResult Create(string xSERIES)
         {
-            return PartialView(new PRODUCT());
+            return PartialView(new PRODUCT()
+            {
+                SERIES = xSERIES
+            });
         }
 
-        public ActionResult Edit(string xID)
+        public ActionResult Edit(string xSERIES, string xID)
         {
-            return PartialView(_Service.GetPRODUCT(xID));
+            return PartialView(_Service.GetPRODUCT(xSERIES, xID));
         }
 
         async public Task<ActionResult> Add(PRODUCT item)
@@ -53,9 +56,9 @@ namespace MTOS.Controllers
             return Content(await _Service.UpdatePRODUCT(item));
         }
 
-        async public Task<ActionResult> Delete(string xID)
+        async public Task<ActionResult> Delete(string xSERIES, string xID)
         {
-            return Content(await _Service.DeletePRODUCT(_Service.GetPRODUCT(xID)));
+            return Content(await _Service.DeletePRODUCT(_Service.GetPRODUCT(xSERIES, xID)));
         }
     }
 }

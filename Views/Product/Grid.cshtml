@@ -4,6 +4,7 @@
     <table id="list" class="table table-bordered table-striped table-hover table-condensed">
         <thead>
             <tr>
+                <th hidden>系列</th>
                 <th>產品代碼</th>
                 <th>產品名稱</th>
             </tr>
@@ -12,6 +13,7 @@
             @foreach (var it in Model)
             {
             <tr class="alert-info">
+                <td hidden>@Html.DisplayFor(m => it.SERIES)</td>
                 <td>@Html.DisplayFor(m => it.ID)</td>
                 <td>@Html.DisplayFor(m => it.NAME)</td>
             </tr>

@@ -17,11 +17,11 @@ namespace MTOS.Controllers
             _Service = new MTService();
         }
 
-        public ActionResult Index(string xPRODUCTID, string xDOCTYPE)
+        public ActionResult Index(string xSERIES, string xDOCTYPE)
         {
-            return View(Tuple.Create(_Service.GetPRODUCT(xPRODUCTID), xDOCTYPE, _Service.LookupPRODUCT_DOCUMENT(new ReportQueryViewModel()
+            return View(Tuple.Create(_Service.GetSERIES(xSERIES), xDOCTYPE, _Service.LookupPRODUCT_DOCUMENT(new ReportQueryViewModel()
             {
-                ProductID = xPRODUCTID,
+                Series = xSERIES,
                 DocumentType = xDOCTYPE
             }).AsEnumerable()));
         }

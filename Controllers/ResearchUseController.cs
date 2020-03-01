@@ -20,6 +20,11 @@ namespace MTOS.Controllers
             _Service = new MTService();
         }
 
+        public JsonResult listProduct(string xSERIES)
+        {
+            return Json(new { data = _Service.LookupPRODUCT(xSERIES) }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Index()
         {
             return View(new ReportQueryViewModel()
@@ -39,12 +44,12 @@ namespace MTOS.Controllers
             return PartialView(_Service.GetPRODUCT_DOCUMENT(xGUID));
         }
 
-        public ActionResult Create(string xProductID)
+        public ActionResult Create()
         {
             return PartialView(new PRODUCT_DOCUMENT()
             {
                 GUID = Guid.NewGuid().ToString(),
-                PRODUCT_ID = xProductID,
+                SERIES = _Service.LookupSERIES().First().ID,
                 REPORT_DATE = DateTime.Today,
                 MODIFY_DATE = DateTime.Today
             });

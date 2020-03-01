@@ -15,13 +15,36 @@ namespace MTOS.Models
             return new MTDBEntities();
         }
 
-        public static List<SelectListItem> ProductList()
+        public static List<SelectListItem> SeriesList()
+        {
+            using (var r = GetEntity())
+            {
+                return r.SERIES.AsNoTracking()
+                    .Select(s => new SelectListItem() { Value = s.ID, Text = s.NAME })
+                    .ToList();
+            }
+        }
+
+        public static List<SelectListItem> ProductList(string xSERIES)
+        {
+            using (var r = GetEntity())
+            {
+                var q = r.PRODUCT.AsNoTracking().AsQueryable();
+                if (xSERIES.IsNotNullOrEmpty())
+                    q = q.Where(w => w.SERIES == xSERIES);
+
+                return q
+                    .Select(s => new SelectListItem() { Value = s.ID, Text = s.NAME })
+                    .ToList();
+            }
+        }
+
+        public static Dictionary<string, string> ProductMapping()
         {
             using (var r = GetEntity())
             {
                 return r.PRODUCT.AsNoTracking()
-                    .Select(s => new SelectListItem() { Value = s.ID, Text = s.NAME })
-                    .ToList();
+                    .ToDictionary(k => k.SERIES + k.ID, v => v.NAME);
             }
         }
 

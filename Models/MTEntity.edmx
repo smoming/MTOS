@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="COMPANY_BASIC_INFO">
           <Key>
             <PropertyRef Name="INFO_TYPE" />
@@ -23,17 +23,19 @@
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
+            <PropertyRef Name="SERIES" />
             <PropertyRef Name="ID" />
           </Key>
+          <Property Name="SERIES" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="OFFICIAL_SITE" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="PRODUCT_DOCUMENT">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
           <Property Name="GUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SERIES" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRODUCT_ID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="REPORT_DATE" Type="date" Nullable="false" />
           <Property Name="DOCUMENT_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
@@ -42,13 +44,32 @@
           <Property Name="REMARK" Type="nvarchar" MaxLength="500" />
           <Property Name="MODIFY_DATE" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MTDB.dbo.SERIES' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="SERIES">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OFFICIAL_SITE" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityContainer Name="MTDBModelStoreContainer">
           <EntitySet Name="COMPANY_BASIC_INFO" EntityType="Self.COMPANY_BASIC_INFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT_US" EntityType="Self.CONTACT_US" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_DOCUMENT" EntityType="Self.PRODUCT_DOCUMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERIES" EntityType="Self.SERIES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SERIES].[ID] AS [ID], 
+    [SERIES].[NAME] AS [NAME], 
+    [SERIES].[OFFICIAL_SITE] AS [OFFICIAL_SITE]
+    FROM [dbo].[SERIES] AS [SERIES]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MTDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -70,7 +91,31 @@
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
+            <PropertyRef Name="SERIES" />
             <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SERIES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT_DOCUMENT">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SERIES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REPORT_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOCUMENT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOCUMENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EXTENSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SERIES">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NAME" />
           </Key>
           <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
@@ -80,21 +125,9 @@
           <EntitySet Name="COMPANY_BASIC_INFO" EntityType="Self.COMPANY_BASIC_INFO" />
           <EntitySet Name="CONTACT_US" EntityType="Self.CONTACT_US" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
-          <EntitySet Name="PRODUCT_DOCUMENT" EntityType="MTDBModel.PRODUCT_DOCUMENT" />
+          <EntitySet Name="PRODUCT_DOCUMENT" EntityType="Self.PRODUCT_DOCUMENT" />
+          <EntitySet Name="SERIES" EntityType="Self.SERIES" />
         </EntityContainer>
-        <EntityType Name="PRODUCT_DOCUMENT">
-          <Key>
-            <PropertyRef Name="GUID" />
-          </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PRODUCT_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="REPORT_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DOCUMENT_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DOCUMENT_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EXTENSION" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -122,23 +155,33 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="MTDBModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="SERIES" ColumnName="SERIES" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="OFFICIAL_SITE" ColumnName="OFFICIAL_SITE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PRODUCT_DOCUMENT">
             <EntityTypeMapping TypeName="MTDBModel.PRODUCT_DOCUMENT">
               <MappingFragment StoreEntitySet="PRODUCT_DOCUMENT">
-                <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
-                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
-                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
-                <ScalarProperty Name="DOCUMENT_NAME" ColumnName="DOCUMENT_NAME" />
-                <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
-                <ScalarProperty Name="REPORT_DATE" ColumnName="REPORT_DATE" />
-                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="SERIES" ColumnName="SERIES" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="REPORT_DATE" ColumnName="REPORT_DATE" />
+                <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
+                <ScalarProperty Name="DOCUMENT_NAME" ColumnName="DOCUMENT_NAME" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERIES">
+            <EntityTypeMapping TypeName="MTDBModel.SERIES">
+              <MappingFragment StoreEntitySet="SERIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="OFFICIAL_SITE" ColumnName="OFFICIAL_SITE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

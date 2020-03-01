@@ -14,8 +14,8 @@ namespace MTOS.Models
     
     public partial class PRODUCT
     {
+        public string SERIES { get; set; }
         public string ID { get; set; }
         public string NAME { get; set; }
-        public string OFFICIAL_SITE { get; set; }
     }
 }
