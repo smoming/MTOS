@@ -10,7 +10,7 @@ namespace MTOS.Extend
     {
         [Description("研究報告")]
         research,
-        [Description("使用個案報告")]
+        [Description("使用個案")]
         usecases
     }
 }

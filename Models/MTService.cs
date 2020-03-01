@@ -145,6 +145,8 @@ namespace MTOS.Models
                     q = q.Where(w => w.REPORT_DATE <= filter.TradeDate_E.Value);
                 if (filter.ProductID.IsNotNullOrEmpty())
                     q = q.Where(w => w.PRODUCT_ID == filter.ProductID);
+                if (filter.DocumentType.IsNotNullOrEmpty())
+                    q = q.Where(w => w.DOCUMENT_TYPE == filter.DocumentType);
             }
 
             return q;

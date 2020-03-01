@@ -1,18 +1,15 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Wound Care</title>
-</head>
-<body>
-    <div>
-        Wound Care
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1>Wound Care</h1>
     </div>
-</body>
-</html>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @foreach (var t in Extensions.GetEnumList<DocType>())
+        {
+            @Html.ActionLink(t.GetDescription(), "Index", "ProductRS", new { xPRODUCTID = "WOUNDCARE", xDOCTYPE = t.ToString() }, new { @class = "btn btn-primary" })
+            <span>&nbsp;</span>
+        }
+    </div>
+</div>

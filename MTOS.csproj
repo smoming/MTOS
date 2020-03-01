@@ -139,6 +139,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductRSController.cs" />
     <Compile Include="Controllers\ResearchUseController.cs" />
     <Compile Include="Controllers\TimeLessTomatoController.cs" />
     <Compile Include="Controllers\WoundCareController.cs" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Grid.cshtml" />
+    <Content Include="Views\ProductRS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

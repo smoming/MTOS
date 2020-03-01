@@ -10,5 +10,6 @@ namespace MTOS.Models
         public DateTime? TradeDate_S { get; set; }
         public DateTime? TradeDate_E { get; set; }
         public string ProductID { get; set; }
+        public string DocumentType { get; set; }
     }
 }

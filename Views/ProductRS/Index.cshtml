@@ -1,0 +1,40 @@
+﻿@model Tuple<PRODUCT, string, IEnumerable<PRODUCT_DOCUMENT>>
+@{
+    Dictionary<string, string> DocList = Extensions.GetEnumList<DocType>()
+        .ToDictionary(k => k.ToString(), v => v.GetDescription());
+    Dictionary<string, string> ProductList = Shared.ProductList()
+        .ToDictionary(k => k.Value.ToString(), v => v.Text);
+
+}
+<div class="row">
+    <h1>@string.Concat(Model.Item1.NAME, " - ", Model.Item2.ToEnum<DocType>().GetDescription())</h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table id="list" class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th hidden>KEY</th>
+                        <th>產品名稱</th>
+                        <th>報告日期</th>
+                        <th>文件名稱</th>
+                        <th>文件</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var it in Model.Item3)
+                    {
+                        <tr class="alert-info">
+                            <td hidden>@Html.DisplayFor(m => it.GUID)</td>
+                            <td>@Html.DisplayFor(m => ProductList[it.PRODUCT_ID])</td>
+                            <td>@Html.DisplayFor(m => it.REPORT_DATE)</td>
+                            <td>@Html.DisplayFor(m => it.DOCUMENT_NAME)</td>
+                            <td>@Html.ActionLink("下載檔案", "DownloadFile", "ResearchUse", new { xGUID = it.GUID }, new { @class = "btn btn-primary btn-sm" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
