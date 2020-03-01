@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="MTDBModel.COMPANY_BASIC_INFO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MTDBModel.CONTACT_US" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MTDBModel.PRODUCT" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MTDBModel.PRODUCT_DOCUMENT" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTDBModel.PRODUCT_DOCUMENT" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

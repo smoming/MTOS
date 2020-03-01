@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -86,6 +87,14 @@ namespace MTOS
                 throw new ArgumentException("T must be an enumerated type");
             }
             return Enum.GetValues(typeof(T)).Cast<T>().ToList();
+        }
+
+        public static string GetFileExtension(this HttpPostedFileBase file)
+        {
+            if (file.IsNull())
+                return string.Empty;
+
+            return Path.GetExtension(file.FileName).ToLower();
         }
     }
 }

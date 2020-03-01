@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="COMPANY_BASIC_INFO">
           <Key>
             <PropertyRef Name="INFO_TYPE" />
@@ -38,6 +38,7 @@
           <Property Name="REPORT_DATE" Type="date" Nullable="false" />
           <Property Name="DOCUMENT_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="DOCUMENT_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EXTENSION" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="REMARK" Type="nvarchar" MaxLength="500" />
           <Property Name="MODIFY_DATE" Type="datetime" Nullable="false" />
         </EntityType>
@@ -47,8 +48,7 @@
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_DOCUMENT" EntityType="Self.PRODUCT_DOCUMENT" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MTDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -76,24 +76,25 @@
           <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OFFICIAL_SITE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="PRODUCT_DOCUMENT">
-          <Key>
-            <PropertyRef Name="GUID" />
-          </Key>
-          <Property Name="GUID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PRODUCT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REPORT_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DOCUMENT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DOCUMENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityContainer Name="MTDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="COMPANY_BASIC_INFO" EntityType="Self.COMPANY_BASIC_INFO" />
           <EntitySet Name="CONTACT_US" EntityType="Self.CONTACT_US" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
-          <EntitySet Name="PRODUCT_DOCUMENT" EntityType="Self.PRODUCT_DOCUMENT" />
+          <EntitySet Name="PRODUCT_DOCUMENT" EntityType="MTDBModel.PRODUCT_DOCUMENT" />
         </EntityContainer>
+        <EntityType Name="PRODUCT_DOCUMENT">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REPORT_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DOCUMENT_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DOCUMENT_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EXTENSION" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -130,13 +131,14 @@
           <EntitySetMapping Name="PRODUCT_DOCUMENT">
             <EntityTypeMapping TypeName="MTDBModel.PRODUCT_DOCUMENT">
               <MappingFragment StoreEntitySet="PRODUCT_DOCUMENT">
-                <ScalarProperty Name="GUID" ColumnName="GUID" />
-                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
-                <ScalarProperty Name="REPORT_DATE" ColumnName="REPORT_DATE" />
-                <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
-                <ScalarProperty Name="DOCUMENT_NAME" ColumnName="DOCUMENT_NAME" />
-                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
                 <ScalarProperty Name="MODIFY_DATE" ColumnName="MODIFY_DATE" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+                <ScalarProperty Name="DOCUMENT_NAME" ColumnName="DOCUMENT_NAME" />
+                <ScalarProperty Name="DOCUMENT_TYPE" ColumnName="DOCUMENT_TYPE" />
+                <ScalarProperty Name="REPORT_DATE" ColumnName="REPORT_DATE" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

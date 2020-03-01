@@ -157,8 +157,6 @@ namespace MTOS.Models
 
         async public Task<string> AddPRODUCT_DOCUMENT(PRODUCT_DOCUMENT item)
         {
-            item.GUID = Guid.NewGuid().ToString();
-            item.MODIFY_DATE = DateTime.Now;
             return await Save<PRODUCT_DOCUMENT>(EntityState.Added, item);
         }
 

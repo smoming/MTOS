@@ -52,6 +52,11 @@
         $('#btnCreate').on('click', function () {
             EditV.load('@Url.Action("Create")', CreateReady);
         });
+
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        if (message != null) {
+            alert(message);
+        }
     });
 
     function loadGrid() {
@@ -62,6 +67,7 @@
 
     function CreateReady() {
         eventCancal();
+        uploadReady();
     }
 
     function SelectReady() {
@@ -74,6 +80,7 @@
         //EditV.find('#GUID, #PRODUCT_ID').attr('readonly', true);
 
         eventCancal();
+        uploadReady();
         $('#btnDelete').on('click', function () {
             $.post('@Url.Action("Delete")', { xGUID: EditV.find('#GUID').val() }, onSaved);
         });
@@ -91,6 +98,17 @@
 
     function eventCancal() {
         $('#btnCancel').on('click', claerEdit);
+    }
+
+    function uploadReady() {
+        $('#upload').on('change', function (e) {
+            var files = e.target.files;
+            if (files.length > 0) {
+                var filename = files[0].name;
+                var ext = filename.split('.').pop();
+                $("#DOCUMENT_NAME").val(filename.replace("." + ext, ""));
+            }
+        });
     }
 
 </script>

@@ -1,6 +1,7 @@
 ﻿@model PRODUCT_DOCUMENT
 
 @Html.HiddenFor(m => m.GUID, "KEY")
+@Html.HiddenFor(m => m.EXTENSION, "附檔名")
 @Html.HiddenFor(m => m.MODIFY_DATE, "異動日期")
 <div class="container">
     <div class="row">
@@ -16,7 +17,7 @@
             @Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
         </div>
         <div class="col-md-3">
-            @Html.Partial("Upload")
+            <input type="file" name="uploadfile" id="upload" />
         </div>
     </div>
     <div class="row">
@@ -28,9 +29,6 @@
         <div class="col-md-6">
             @Html.TextAreaBuilder(m => m.REMARK, "備註")
         </div>
-    </div>
-    <div class="row" style="height: 500px">
-        <input id="file-Portrait1" type="file">
     </div>
 </div>
 

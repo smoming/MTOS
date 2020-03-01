@@ -1,10 +1,6 @@
 ﻿@model PRODUCT_DOCUMENT
 
-@using (Ajax.BeginForm(new AjaxOptions()
-{
-    OnSuccess = "onSaved",
-    Url = Url.Action("Update")
-}))
+@using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
         <div class="col-md-12">

@@ -19,6 +19,7 @@ namespace MTOS.Models
         public System.DateTime REPORT_DATE { get; set; }
         public string DOCUMENT_TYPE { get; set; }
         public string DOCUMENT_NAME { get; set; }
+        public string EXTENSION { get; set; }
         public string REMARK { get; set; }
         public System.DateTime MODIFY_DATE { get; set; }
     }

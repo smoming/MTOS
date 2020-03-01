@@ -164,5 +164,10 @@ namespace MTOS
         {
             return helper.Partial("Accordion", Tuple.Create(value, titleTitle));
         }
+
+        static public string ControllerName(this HtmlHelper helper)
+        {
+            return helper.ViewContext.RouteData.Values["controller"].ToString();
+        }
     }
 }

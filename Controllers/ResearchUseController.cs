@@ -1,7 +1,9 @@
 ﻿using MTOS.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +43,7 @@ namespace MTOS.Controllers
         {
             return PartialView(new PRODUCT_DOCUMENT()
             {
+                GUID = Guid.NewGuid().ToString(),
                 PRODUCT_ID = xProductID,
                 REPORT_DATE = DateTime.Today,
                 MODIFY_DATE = DateTime.Today
@@ -52,19 +55,56 @@ namespace MTOS.Controllers
             return PartialView(_Service.GetPRODUCT_DOCUMENT(xGUID));
         }
 
-        async public Task<ActionResult> Add(PRODUCT_DOCUMENT item)
+        [HttpPost]
+        async public Task<ActionResult> Add(PRODUCT_DOCUMENT item, HttpPostedFileBase uploadfile)
         {
-            return Content(await _Service.AddPRODUCT_DOCUMENT(item));
+            try
+            {
+                item.EXTENSION = uploadfile.GetFileExtension();
+                item.MODIFY_DATE = DateTime.Now;
+                DoUploadFile(uploadfile, item.GUID);
+                TempData["message"] = await _Service.AddPRODUCT_DOCUMENT(item);
+            }
+            catch (Exception e)
+            {
+                TempData["message"] = e.Message;
+            }
+
+            return RedirectToAction("Index");
         }
 
-        async public Task<ActionResult> Update(PRODUCT_DOCUMENT item)
+        [HttpPost]
+        async public Task<ActionResult> Update(PRODUCT_DOCUMENT item, HttpPostedFileBase uploadfile)
         {
-            return Content(await _Service.UpdatePRODUCT_DOCUMENT(item));
+            try
+            {
+                DoRemoveFile(item.GUID, item.EXTENSION); //刪除舊的文件
+                item.EXTENSION = uploadfile.GetFileExtension();
+                item.MODIFY_DATE = DateTime.Now;
+                DoUploadFile(uploadfile, item.GUID); //新增新的文件
+                TempData["message"] = await _Service.UpdatePRODUCT_DOCUMENT(item);
+            }
+            catch (Exception e)
+            {
+                TempData["message"] = e.Message;
+            }
+
+            return RedirectToAction("Index");
         }
 
         async public Task<ActionResult> Delete(string xGUID)
         {
-            return Content(await _Service.DeletePRODUCT_DOCUMENT(_Service.GetPRODUCT_DOCUMENT(xGUID)));
+            PRODUCT_DOCUMENT item;
+            try
+            {
+                item = _Service.GetPRODUCT_DOCUMENT(xGUID);
+                DoRemoveFile(xGUID, item.EXTENSION);
+            }
+            catch (Exception e)
+            {
+                return Content(e.Message);
+            }
+            return Content(await _Service.DeletePRODUCT_DOCUMENT(item));
         }
     }
 }
