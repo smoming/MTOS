@@ -1,39 +1,13 @@
-﻿<div>
-    <input type="file" name="UploadFile" id="upload" multiple />
+﻿@model Tuple<string, string>
+<label>上傳檔案</label>
+<div class="custom-file" style="margin-bottom: 16px;">
+    <input type="file" class="custom-file-input" id="@Model.Item1" name="@Model.Item1">
+    <label class="custom-file-label" for="@Model.Item1">@Model.Item2</label>
 </div>
-
 <script>
-        $(document).ready(function () {
-            $('#upload').on('change', function (e) {
-                //取得檔案
-                var files = e.target.files;
-                if (files.length > 0) {
-                    if (window.FormData !== undefined) {
-                        var data = new FormData();
-
-                        //可上傳多檔案
-                        for (var x = 0; x < files.length; x++) {
-                            data.append(files[x].name, files[x]);
-                        }
-
-                        $.ajax({
-                            type: "POST",
-                            url: '@Url.Action("UploadByAjax", "Home")',
-                            contentType: false,
-                            processData: false,
-                            data: data,
-                            success: function (result) {
-                                //console.log(result);
-                                alert(result);
-                            },
-                            error: function (xhr, status) {
-                                console.log("上傳失敗");
-                            }
-                        });
-                    } else {
-                        alert("此瀏覽器不支援HTML5檔案上傳");
-                    }
-                }
-            });
-        });
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
 </script>

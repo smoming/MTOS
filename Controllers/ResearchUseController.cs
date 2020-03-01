@@ -60,10 +60,17 @@ namespace MTOS.Controllers
         {
             try
             {
-                item.EXTENSION = uploadfile.GetFileExtension();
-                item.MODIFY_DATE = DateTime.Now;
-                DoUploadFile(uploadfile, item.GUID);
-                TempData["message"] = await _Service.AddPRODUCT_DOCUMENT(item);
+                if (uploadfile.IsNotNull())
+                {
+                    item.EXTENSION = uploadfile.GetFileExtension();
+                    item.MODIFY_DATE = DateTime.Now;
+                    DoUploadFile(uploadfile, item.GUID);
+                    TempData["message"] = await _Service.AddPRODUCT_DOCUMENT(item);
+                }
+                else
+                {
+                    TempData["message"] = "請選擇上傳檔案";
+                }
             }
             catch (Exception e)
             {
@@ -78,10 +85,14 @@ namespace MTOS.Controllers
         {
             try
             {
-                DoRemoveFile(item.GUID, item.EXTENSION); //刪除舊的文件
-                item.EXTENSION = uploadfile.GetFileExtension();
+                if (uploadfile.IsNotNull())
+                {
+                    DoRemoveFile(item.GUID, item.EXTENSION); //刪除舊的文件
+                    item.EXTENSION = uploadfile.GetFileExtension();
+                    DoUploadFile(uploadfile, item.GUID); //新增新的文件
+                }
+
                 item.MODIFY_DATE = DateTime.Now;
-                DoUploadFile(uploadfile, item.GUID); //新增新的文件
                 TempData["message"] = await _Service.UpdatePRODUCT_DOCUMENT(item);
             }
             catch (Exception e)
@@ -105,6 +116,12 @@ namespace MTOS.Controllers
                 return Content(e.Message);
             }
             return Content(await _Service.DeletePRODUCT_DOCUMENT(item));
+        }
+
+        public ActionResult DownloadFile(string xGUID)
+        {
+            PRODUCT_DOCUMENT item = _Service.GetPRODUCT_DOCUMENT(xGUID);
+            return DoDownloadFile(item.GUID, item.EXTENSION, string.Concat(item.DOCUMENT_NAME, item.EXTENSION));
         }
     }
 }

@@ -16,8 +16,10 @@
         <div class="col-md-3">
             @Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
         </div>
-        <div class="col-md-3">
-            <input type="file" name="uploadfile" id="upload" />
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.UploadFileBuilder("uploadfile", "選擇檔案")
         </div>
     </div>
     <div class="row">
@@ -33,7 +35,7 @@
 </div>
 
 <style>
-    #DOCUMENT_NAME, #REMARK {
+    #uploadfile, #DOCUMENT_NAME, #REMARK {
         max-width: none;
     }
 </style>

@@ -46,11 +46,7 @@ namespace MTOS.Controllers
 
         protected void DoUploadFile(HttpPostedFileBase file, string filename)
         {
-            string savePath = Server.MapPath(Extensions.GetAppSetting("DocSavePath"));
-            if (Directory.Exists(savePath).Not())
-            {
-                Directory.CreateDirectory(savePath);
-            }
+            string savePath = checkPath();
             if (file != null)
             {
                 file.SaveAs(Path.Combine(savePath, string.Concat(filename, file.GetFileExtension())));
@@ -58,16 +54,30 @@ namespace MTOS.Controllers
         }
         protected void DoRemoveFile(string filename, string extension)
         {
-            string savePath = Server.MapPath(Extensions.GetAppSetting("DocSavePath"));
-            if (Directory.Exists(savePath).Not())
-            {
-                Directory.CreateDirectory(savePath);
-            }
+            string savePath = checkPath();
             string fullname = Path.Combine(savePath, string.Concat(filename, extension));
             if (System.IO.File.Exists(fullname))
             {
                 System.IO.File.Delete(fullname);
             }
+        }
+
+        protected FilePathResult DoDownloadFile(string filename, string extension, string downloadfilefullname)
+        {
+            string savePath = checkPath();
+            string fullname = Path.Combine(savePath, string.Concat(filename, extension));
+            return File(fullname, "application/octet-stream", downloadfilefullname);
+        }
+
+        private string checkPath()
+        {
+            string savePath = Server.MapPath(Extensions.GetAppSetting("DocSavePath"));
+            if (Directory.Exists(savePath).Not())
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            return savePath;
         }
     }
 }

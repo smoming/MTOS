@@ -12,6 +12,7 @@
             @Html.ButtonBuilder(ButtonType.submit, "btnSave", "儲存")
             @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
             @Html.ButtonBuilder(ButtonType.button, "btnDelete", "刪除")
+            @Html.ActionLink("下載檔案", "DownloadFile", new { xGUID = Model.GUID }, new { @class = "btn btn-primary" })
         </div>
     </div>
 }

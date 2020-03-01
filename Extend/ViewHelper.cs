@@ -165,6 +165,24 @@ namespace MTOS
             return helper.Partial("Accordion", Tuple.Create(value, titleTitle));
         }
 
+        static public MvcHtmlString UploadFileBuilder(this HtmlHelper helper, 
+            string name,
+            string labelText)
+        {
+            //var div = new TagBuilder("div");
+            //div.MergeAttribute("class", "form-group");
+
+            //var inputlabel = helper.Label(labelText, new { @class = "custom-file-label", @for = name }).ToHtmlString();
+            //var input = new TagBuilder("input");
+            //input.MergeAttribute("type", "file");
+            //input.MergeAttribute("class", "custom-file-input");
+            //input.MergeAttribute("id", name);
+            //input.MergeAttribute("name", name);
+
+            //return MvcHtmlString.Create(div.ToString(TagRenderMode.StartTag) + input + inputlabel + div.ToString(TagRenderMode.EndTag));
+            return helper.Partial("Upload", Tuple.Create(name, labelText));
+        }
+
         static public string ControllerName(this HtmlHelper helper)
         {
             return helper.ViewContext.RouteData.Values["controller"].ToString();
