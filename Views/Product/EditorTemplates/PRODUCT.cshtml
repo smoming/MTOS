@@ -3,3 +3,11 @@
 @Html.DropDownListBuilder(m => m.SERIES, Shared.SeriesList(), "系列")
 @Html.TextBoxBuilder(m => m.ID, "產品代碼")
 @Html.TextBoxBuilder(m => m.NAME, "產品名稱")
+@Html.UploadFileBuilder("uploadfile", "選擇檔案")
+@Html.HiddenFor(m => m.EXTENSION)
+
+<style>
+    .custom-file {
+        width: auto;
+    }
+</style>

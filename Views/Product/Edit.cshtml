@@ -1,15 +1,17 @@
 ﻿@model PRODUCT
+@{
+    var picpath = string.Format("{0}{1}_{2}{3}", Extensions.GetAppSetting("ProdPicSavePath"), Model.SERIES, Model.ID, Model.EXTENSION);
+}
 
-@using (Ajax.BeginForm(new AjaxOptions()
-{
-    OnSuccess = "onSaved",
-    Url = Url.Action("Update")
-}))
+@using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             @Html.HiddenFor(m => m.SERIES)
             @Html.EditorForModel()
+        </div>
+        <div class="col-md-6">
+            <img src="@Url.Content(picpath)" class="img-fluid img-thumbnail" />
         </div>
     </div>
     <div class="row">

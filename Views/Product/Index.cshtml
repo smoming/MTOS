@@ -28,6 +28,11 @@
             loadGrid();
             claerEdit();
         });
+
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        if (message != null) {
+            alert(message);
+        }
     });
 
     function loadGrid() {

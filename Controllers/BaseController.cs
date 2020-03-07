@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTOS.Extend;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -44,17 +45,17 @@ namespace MTOS.Controllers
             };
         }
 
-        protected void DoUploadFile(HttpPostedFileBase file, string filename)
+        protected void DoUploadFile(UploadType type, HttpPostedFileBase file, string filename)
         {
-            string savePath = checkPath();
+            string savePath = checkPath(type);
             if (file != null)
             {
                 file.SaveAs(Path.Combine(savePath, string.Concat(filename, file.GetFileExtension())));
             }
         }
-        protected void DoRemoveFile(string filename, string extension)
+        protected void DoRemoveFile(UploadType type, string filename, string extension)
         {
-            string savePath = checkPath();
+            string savePath = checkPath(type);
             string fullname = Path.Combine(savePath, string.Concat(filename, extension));
             if (System.IO.File.Exists(fullname))
             {
@@ -62,16 +63,17 @@ namespace MTOS.Controllers
             }
         }
 
-        protected FilePathResult DoDownloadFile(string filename, string extension, string downloadfilefullname)
+        protected FilePathResult DoDownloadFile(UploadType type, string filename, string extension, string downloadfilefullname)
         {
-            string savePath = checkPath();
+            string savePath = checkPath(type);
             string fullname = Path.Combine(savePath, string.Concat(filename, extension));
             return File(fullname, "application/octet-stream", downloadfilefullname);
         }
 
-        private string checkPath()
+        private string checkPath(UploadType type)
         {
-            string savePath = Server.MapPath(Extensions.GetAppSetting("DocSavePath"));
+            string saveType = type == UploadType.DOC ? "DocSavePath" : "ProdPicSavePath";
+            string savePath = Server.MapPath(Extensions.GetAppSetting(saveType));
             if (Directory.Exists(savePath).Not())
             {
                 Directory.CreateDirectory(savePath);

@@ -1,4 +1,5 @@
-﻿using MTOS.Models;
+﻿using MTOS.Extend;
+using MTOS.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,10 @@ namespace MTOS.Controllers
     public class ResearchUseController : BaseController
     {
         private MTService _Service;
+        private List<string> _AllowedExtextsion =
+            Extensions.GetAppSetting("DocType").Split(',')
+            .Select(s => string.Concat(".", s))
+            .ToList();
 
         public ResearchUseController()
             : base()
@@ -67,10 +72,17 @@ namespace MTOS.Controllers
             {
                 if (uploadfile.IsNotNull())
                 {
-                    item.EXTENSION = uploadfile.GetFileExtension();
-                    item.MODIFY_DATE = DateTime.Now;
-                    DoUploadFile(uploadfile, item.GUID);
-                    TempData["message"] = await _Service.AddPRODUCT_DOCUMENT(item);
+                    if (_AllowedExtextsion.Contains(uploadfile.GetFileExtension().ToLower()))
+                    {
+                        item.EXTENSION = uploadfile.GetFileExtension();
+                        item.MODIFY_DATE = DateTime.Now;
+                        DoUploadFile(UploadType.DOC, uploadfile, item.GUID);
+                        TempData["message"] = await _Service.AddPRODUCT_DOCUMENT(item);
+                    }
+                    else
+                    {
+                        TempData["message"] = string.Concat("請選擇檔案. ex: ", string.Join(", ", _AllowedExtextsion));
+                    }
                 }
                 else
                 {
@@ -92,9 +104,17 @@ namespace MTOS.Controllers
             {
                 if (uploadfile.IsNotNull())
                 {
-                    DoRemoveFile(item.GUID, item.EXTENSION); //刪除舊的文件
-                    item.EXTENSION = uploadfile.GetFileExtension();
-                    DoUploadFile(uploadfile, item.GUID); //新增新的文件
+                    if (_AllowedExtextsion.Contains(uploadfile.GetFileExtension().ToLower()))
+                    {
+                        DoRemoveFile(UploadType.DOC, item.GUID, item.EXTENSION); //刪除舊的文件
+                        item.EXTENSION = uploadfile.GetFileExtension();
+                        DoUploadFile(UploadType.DOC, uploadfile, item.GUID); //新增新的文件
+                    }
+                    else
+                    {
+                        TempData["message"] = string.Concat("請選擇檔案. ex: ", string.Join(", ", _AllowedExtextsion));
+                        return RedirectToAction("Index");
+                    }
                 }
 
                 item.MODIFY_DATE = DateTime.Now;
@@ -114,7 +134,7 @@ namespace MTOS.Controllers
             try
             {
                 item = _Service.GetPRODUCT_DOCUMENT(xGUID);
-                DoRemoveFile(xGUID, item.EXTENSION);
+                DoRemoveFile(UploadType.DOC, xGUID, item.EXTENSION);
             }
             catch (Exception e)
             {
@@ -126,7 +146,7 @@ namespace MTOS.Controllers
         public ActionResult DownloadFile(string xGUID)
         {
             PRODUCT_DOCUMENT item = _Service.GetPRODUCT_DOCUMENT(xGUID);
-            return DoDownloadFile(item.GUID, item.EXTENSION, string.Concat(item.DOCUMENT_NAME, item.EXTENSION));
+            return DoDownloadFile(UploadType.DOC, item.GUID, item.EXTENSION, string.Concat(item.DOCUMENT_NAME, item.EXTENSION));
         }
     }
 }
