@@ -88,6 +88,7 @@ namespace MTOS.Models
 
         async public Task<string> AddCONTACT_US(CONTACT_US item)
         {
+            item.GUID = Guid.NewGuid().ToString();
             return await Save<CONTACT_US>(EntityState.Added, item);
         }
 

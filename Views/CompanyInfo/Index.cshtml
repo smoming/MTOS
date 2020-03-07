@@ -33,16 +33,16 @@
 
     function SelectReady() {
         $('#list tbody tr').on('click', function () {
-            EditV.load('@Url.Action("Edit")', { xGUID: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
+            EditV.load('@Url.Action("Edit")', { xInfoType: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
         });
     }
 
     function EditReady() {
-        EditV.find('#GUID').attr('readonly', true);
+        EditV.find('#INFO_TYPE').attr('readonly', true);
 
         eventCancal();
         $('#btnDelete').on('click', function () {
-            $.post('@Url.Action("Delete")', { xGUID: EditV.find('#GUID').val() }, onSaved);
+            $.post('@Url.Action("Delete")', { xInfoType: EditV.find('#INFO_TYPE').val() }, onSaved);
         });
     }
 

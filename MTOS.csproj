@@ -136,6 +136,7 @@
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CompanyInfoController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -382,6 +383,15 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Grid.cshtml" />
     <Content Include="Views\ProductRS\Index.cshtml" />
+    <Content Include="Views\CompanyInfo\Grid.cshtml" />
+    <Content Include="Views\CompanyInfo\Index.cshtml" />
+    <Content Include="Views\CompanyInfo\Edit.cshtml" />
+    <Content Include="Views\CompanyInfo\EditorTemplates\COMPANY_BASIC_INFO.cshtml" />
+    <Content Include="Views\CompanyInfo\Create.cshtml" />
+    <Content Include="Views\Contact\Grid.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Contact\EditorTemplates\CONTACT_US.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

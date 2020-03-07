@@ -1,0 +1,6 @@
+﻿@model CONTACT_US
+
+@Html.HiddenFor(m => m.GUID)
+@Html.TextBoxBuilder(m => m.NAME, "姓名")
+@Html.TextBoxBuilder(m => m.EMAIL, "電子信箱")
+@Html.TextBoxBuilder(m => m.MESSAGE, "訊息內容")
