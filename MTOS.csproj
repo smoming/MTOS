@@ -397,6 +397,7 @@
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\EditorTemplates\CONTACT_US.cshtml" />
     <Content Include="Views\Product\Info.cshtml" />
+    <Content Include="Views\Contact\FeedBack.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

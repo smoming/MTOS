@@ -1,0 +1,44 @@
+﻿@model CONTACT_US
+
+@using (Ajax.BeginForm(new AjaxOptions()
+{
+    OnSuccess = "onSaved",
+    Url = Url.Action("Add")
+}))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h4><strong>聯絡我們</strong></h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.EditorForModel()
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.ButtonBuilder(ButtonType.submit, "btnSave", "送出")
+            @Html.ButtonBuilder(ButtonType.button, "btnCancel", "清除")
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        $('#btnCancel').on('click', function () {
+            clean();
+        });
+    });
+
+    function onSaved(d) {
+        alert(d);
+        if (d.indexOf("成功") >= 0) {
+            clean();
+        }
+    }
+    function clean() {
+        $('#LAST_NAME,#EMAIL,#NAME,#PHONE,#SUBJECT,#MESSAGE').val('');
+    }
+
+</script>
