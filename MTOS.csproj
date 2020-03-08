@@ -202,6 +202,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\CONTACT.jpg" />
+    <Content Include="Content\img\RESEARCHUSE.jpg" />
+    <Content Include="Content\img\TIMELESS.jpg" />
+    <Content Include="Content\img\WOUNDCARE.jpg" />
     <Content Include="DocRepo\readme.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />

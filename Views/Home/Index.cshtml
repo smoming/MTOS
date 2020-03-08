@@ -1,28 +1,86 @@
 ﻿<div class="row" style="height: 15em;">
-    <div class="col-md-6" style="background-color: #99e699;">
-        <h2>研究＆使用案例</h2>
-        <p>@Html.ActionLink("研究＆使用案例 PIC", "Index", "ResearchUse")</p>
+    <div id="ResearchUse"
+         class="col-md-6 img-fluid img-thumbnail"
+         style="cursor: pointer;
+            background-image: url('../Content/img/RESEARCHUSE.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;"
+         onclick="window.location = '/ResearchUse';">
+        <h5 style="text-align: end; font-weight:bolder;">Research & Use</h5>
     </div>
-    <div class="col-md-6" style="background-color: #ff9999;">
-        <h2>TIMELESS時光番茄膠囊</h2>
-        <p>@Html.ActionLink("TIMELESS時光番茄膠囊 PIC", "Index", "TimeLessTomato")</p>
+    <div id="TimeLessTomato"
+         class="col-md-6 img-fluid img-thumbnail"
+         style="cursor: pointer;
+                background-image: url('../Content/img/TIMELESS.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;"
+         onclick="window.location = '/TimeLessTomato';">
+        <h5 style="text-align: start; font-weight:bolder;">TimeLess Tomato</h5>
     </div>
 </div>
 <div class="row" style="height: 15em;">
-    <div class="col-md-6" style="background-color: #ffff99;">
-        <h2>WOUNDCARE</h2>
-        <p>@Html.ActionLink("WOUNDCARE PIC", "Index", "WoundCare")</p>
+    <div id="WoundCare"
+         class="col-md-6 img-fluid img-thumbnail"
+         style="cursor: pointer;
+                background-image: url('../Content/img/WOUNDCARE.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;"
+         onclick="window.location = '/WoundCare';">
+        <h5 style="text-align: end; font-weight:bolder;">WOUNDCARE</h5>
     </div>
-    <div class="col-md-6" style="background-color: #b3d9ff;">
-        <h2>聯絡我們</h2>
-        <p>@Html.ActionLink("聯絡我們 PIC", "Index", "Contact")</p>
+    <div id="Contact"
+         class="col-md-6 img-fluid img-thumbnail"
+         style="cursor: pointer;
+                background-image: url('../Content/img/CONTACT.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;"
+         onclick="window.location = '/Contact';">
+        <h5 style="text-align: start; font-weight:bolder;">Contact Us</h5>
     </div>
 </div>
 @Html.ActionLink("產品維護", "Index", "Product")
 @Html.ActionLink("公司資訊", "Index", "CompanyInfo")
-@Html.ActionLink("聯絡我們", "Index", "Contact")
-<style>
-    h2 {
-        margin-top: 2.5em;
-    }
-</style>
+
+<script type="text/javascript">
+    $(function () {
+        $("#ResearchUse").mouseover(function () {
+            $("#ResearchUse").find('h5').css("font-size", "2.5rem");
+            $("#ResearchUse").css("opacity", "0.6");
+        });
+        $("#ResearchUse").mouseout(function () {
+            $("#ResearchUse").find('h5').css("font-size", "1.25rem");
+            $("#ResearchUse").css("opacity", "0.9");
+        });
+
+        $("#TimeLessTomato").mouseover(function () {
+            $("#TimeLessTomato").find('h5').css("font-size", "2.5rem");
+            $("#TimeLessTomato").css("opacity", "0.6");
+        });
+        $("#TimeLessTomato").mouseout(function () {
+            $("#TimeLessTomato").find('h5').css("font-size", "1.25rem");
+            $("#TimeLessTomato").css("opacity", "0.9");
+        });
+
+        $("#WoundCare").mouseover(function () {
+            $("#WoundCare").find('h5').css("font-size", "2.5rem");
+            $("#WoundCare").css("opacity", "0.6");
+        });
+        $("#WoundCare").mouseout(function () {
+            $("#WoundCare").find('h5').css("font-size", "1.25rem");
+            $("#WoundCare").css("opacity", "0.9");
+        });
+
+        $("#Contact").mouseover(function () {
+            $("#Contact").find('h5').css("font-size", "2.5rem");
+            $("#Contact").css("opacity", "0.6");
+        });
+        $("#Contact").mouseout(function () {
+            $("#Contact").find('h5').css("font-size", "1.25rem");
+            $("#Contact").css("opacity", "0.9");
+        });
+    });
+</script>
