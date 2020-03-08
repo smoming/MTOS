@@ -148,5 +148,23 @@ namespace MTOS.Controllers
             PRODUCT_DOCUMENT item = _Service.GetPRODUCT_DOCUMENT(xGUID);
             return DoDownloadFile(UploadType.DOC, item.GUID, item.EXTENSION, string.Concat(item.DOCUMENT_NAME, item.EXTENSION));
         }
+
+        public ActionResult Index_User()
+        {
+            return View(new ReportQueryViewModel()
+            {
+                TradeDate_S = DateTime.Today.AddMonths(-1),
+                TradeDate_E = DateTime.Today
+            });
+        }
+
+        public ActionResult Grid_User(ReportQueryViewModel filter)
+        {
+            return PartialView(_Service.LookupPRODUCT_DOCUMENT(filter)
+                .OrderBy(o => o.SERIES)
+                .ThenBy(o => o.PRODUCT_ID)
+                .ThenBy(o => o.REPORT_DATE)
+                .AsEnumerable());
+        }
     }
 }

@@ -1,3 +1,11 @@
-﻿<div style="background-color: #e6ccff; height: 4em; margin-bottom: 1em;">
-    <h1 style="font-weight:bolder; padding-top: 0.2em;">@Html.ActionLink(@Extensions.GetAppSetting("AppName"), "Index", "Home")</h1>
+﻿<div class="container" style="background-color: #e6ccff; height: 4em; margin-bottom: 0.5em;">
+    <div class="row">
+        <div class="col-md-6" style="font-weight:bolder; font-size: 3em;">@Html.ActionLink(@Extensions.GetAppSetting("AppName"), "Index", "Home")</div>
+        <div class="col-md-6" style="text-align: right;">
+            @Html.ActionLink("研究/使用個案", "Index", "ResearchUse")
+            @Html.ActionLink("產品維護", "Index", "Product")
+            @Html.ActionLink("公司資訊", "Index", "CompanyInfo")
+            @Html.ActionLink("聯絡我們", "Index", "Contact")
+        </div>
+    </div>
 </div>

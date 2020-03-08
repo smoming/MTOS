@@ -1,0 +1,41 @@
+﻿@model ReportQueryViewModel
+
+<div class="row">
+    @using (Ajax.BeginForm(new AjaxOptions()
+    {
+        Url = Url.Action("Grid_User"),
+        UpdateTargetId = "GridV"
+    }))
+    {
+        @Html.AccordionBuilder(@<text>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.DateBoxBuilder(m => m.TradeDate_S, "報告日期(起)")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DateBoxBuilder(m => m.TradeDate_E, "報告日期(迄)")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownListBuilder(m => m.Series, Shared.SeriesList(), "系列", true)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ButtonBuilder(ButtonType.submit, "btnQuery", "查詢")
+                    </div>
+                </div>
+            </div>
+        </text>, "查詢")
+    }
+</div>
+<div class="row" style="margin-top: 0.5%;">
+    <div id="GridV" class="col-md-12"></div>
+</div>
+
+<script>
+    $(function () {
+        $('#btnQuery').click();
+    });
+
+</script>

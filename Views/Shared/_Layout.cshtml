@@ -1,19 +1,5 @@
 ﻿@{
     string xTitle = Extensions.GetAppSetting("AppName");
-    var xFunctionList = new Dictionary<string, string>()
-{
-        {"CashFlow","結帳/回帳作業"},
-        {"Commodity","商品基本資料維護"},
-        {"DeliveryType","配送方式維護"},
-        {"Home",""},
-        {"Nation","國家基本資料維護"},
-        {"Order","下單交易維護"},
-        {"Purchase","進貨交易維護"},
-        {"Receipt","付款交易維護"},
-        {"Shipper","出貨交易維護"},
-        {"Supplier","供應商基本資料維護"},
-        {"Trading","賣出交易維護"},
-    };
 }
 <!DOCTYPE html>
 <html>
@@ -33,8 +19,8 @@
 <body>
     <div class="container body-content">
         @Html.Partial("_Navigation")
-        <div class="body-content" style="height: auto;">
-            <div class="container">
+        <div class="container">
+            <div class="body-content">
                 @RenderBody()
             </div>
         </div>

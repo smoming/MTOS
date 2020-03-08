@@ -1,50 +1,53 @@
-﻿<div class="row" style="height: 15em;">
-    <div id="ResearchUse"
-         class="col-md-6 img-fluid img-thumbnail"
-         style="cursor: pointer;
-            background-image: url('../Content/img/RESEARCHUSE.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;"
-         onclick="window.location = '/ResearchUse';">
-        <h5 style="text-align: end; font-weight:bolder;">Research & Use</h5>
+﻿<div class="container">
+    <div class="row" style="height: 15em;">
+        <div id="ResearchUse"
+             class="col-md-6 img-fluid img-thumbnail"
+             style="cursor: pointer;
+                    background-image: url('../Content/img/RESEARCHUSE.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    max-width: 49.5%;"
+             onclick="window.location = '/ResearchUse/Index_User';">
+            <h5 style="text-align: end; font-weight:bolder;">Research & Use</h5>
+        </div>
+        <div id="TimeLessTomato"
+             class="col-md-6 img-fluid img-thumbnail"
+             style="cursor: pointer;
+                    background-image: url('../Content/img/TIMELESS.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    max-width: 49%;"
+             onclick="window.location = '/TimeLessTomato';">
+            <h5 style="text-align: start; font-weight:bolder;">TimeLess Tomato</h5>
+        </div>
     </div>
-    <div id="TimeLessTomato"
-         class="col-md-6 img-fluid img-thumbnail"
-         style="cursor: pointer;
-                background-image: url('../Content/img/TIMELESS.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;"
-         onclick="window.location = '/TimeLessTomato';">
-        <h5 style="text-align: start; font-weight:bolder;">TimeLess Tomato</h5>
+    <div class="row" style="height: 15em;">
+        <div id="WoundCare"
+             class="col-md-6 img-fluid img-thumbnail"
+             style="cursor: pointer;
+                    background-image: url('../Content/img/WOUNDCARE.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    max-width: 49.5%;"
+             onclick="window.location = '/WoundCare';">
+            <h5 style="text-align: end; font-weight:bolder;">WOUNDCARE</h5>
+        </div>
+        <div id="Contact"
+             class="col-md-6 img-fluid img-thumbnail"
+             style="cursor: pointer;
+                    background-image: url('../Content/img/CONTACT.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    max-width: 49%;"
+             onclick="window.location = '/Contact/FeedBack';">
+            <h5 style="text-align: start; font-weight:bolder;">Contact Us</h5>
+        </div>
     </div>
 </div>
-<div class="row" style="height: 15em;">
-    <div id="WoundCare"
-         class="col-md-6 img-fluid img-thumbnail"
-         style="cursor: pointer;
-                background-image: url('../Content/img/WOUNDCARE.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;"
-         onclick="window.location = '/WoundCare';">
-        <h5 style="text-align: end; font-weight:bolder;">WOUNDCARE</h5>
-    </div>
-    <div id="Contact"
-         class="col-md-6 img-fluid img-thumbnail"
-         style="cursor: pointer;
-                background-image: url('../Content/img/CONTACT.jpg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;"
-         onclick="window.location = '/Contact/FeedBack';">
-        <h5 style="text-align: start; font-weight:bolder;">Contact Us</h5>
-    </div>
-</div>
-@Html.ActionLink("產品維護", "Index", "Product")
-@Html.ActionLink("公司資訊", "Index", "CompanyInfo")
-@Html.ActionLink("聯絡我們", "Index", "Contact")
 
 <script type="text/javascript">
     $(function () {
