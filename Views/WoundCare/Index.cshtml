@@ -1,10 +1,12 @@
-﻿<div class="row">
+﻿@model IEnumerable<PRODUCT>
+
+<div class="row">
     <div class="col-md-12">
         <h1>Wound Care</h1>
     </div>
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-12">
         @foreach (var t in Extensions.GetEnumList<DocType>())
         {
@@ -12,4 +14,21 @@
             <span>&nbsp;</span>
         }
     </div>
+</div>*@
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="card" style="width: 30%; margin: 1.2%;">
+            <div class="card-header">@p.NAME</div>
+            <img class="card-img-top" src="@Url.Content(string.Format("{0}{1}_{2}{3}", Extensions.GetAppSetting("ProdPicSavePath"), p.SERIES, p.ID, p.EXTENSION))" alt="@p.NAME">
+            <div class="card-body">
+                <p class="card-text">
+                    @string.Concat(p.DESCRIPTION.Substring(0, 100), "...more")
+                <p>
+            </div>
+            <div class="card-footer">
+                @Html.ActionLink("查看資訊", "Info", "Product", new { xSERIES = ViewBag.SERIES, xID = p.ID }, null)
+            </div>
+        </div>
+    }
 </div>

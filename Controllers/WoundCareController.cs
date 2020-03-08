@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTOS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,17 @@ namespace MTOS.Controllers
 {
     public class WoundCareController : Controller
     {
-        // GET: WoundCare
+        private MTService _Service;
+
+        public WoundCareController()
+            : base()
+        {
+            _Service = new MTService();
+        }
         public ActionResult Index()
         {
-            return View();
+            ViewBag.SERIES = "WOUNDCARE";
+            return View(_Service.LookupPRODUCT(ViewBag.SERIES));
         }
     }
 }

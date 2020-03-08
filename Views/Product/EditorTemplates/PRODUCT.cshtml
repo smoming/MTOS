@@ -1,13 +1,41 @@
 ﻿@model PRODUCT
 
-@Html.DropDownListBuilder(m => m.SERIES, Shared.SeriesList(), "系列")
-@Html.TextBoxBuilder(m => m.ID, "產品代碼")
-@Html.TextBoxBuilder(m => m.NAME, "產品名稱")
-@Html.UploadFileBuilder("uploadfile", "選擇檔案")
-@Html.HiddenFor(m => m.EXTENSION)
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DropDownListBuilder(m => m.SERIES, Shared.SeriesList(), "系列")
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxBuilder(m => m.ID, "產品代碼")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.TextBoxBuilder(m => m.NAME, "產品名稱")
+        </div>
+        <div class="col-md-3">
+            @Html.UploadFileBuilder("uploadfile", "選擇檔案")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.TextAreaBuilder(m => m.DESCRIPTION, "產品描述")
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.EXTENSION)
+</div>
 
 <style>
     .custom-file {
         width: auto;
+    }
+
+    #DESCRIPTION {
+        max-width: none;
+        width: 100%;
+    }
+
+    #DESCRIPTION {
+        height: 10em;
     }
 </style>

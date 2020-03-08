@@ -24,8 +24,11 @@ namespace MTOS.Controllers
             _Service = new MTService();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string xSERIES = null)
         {
+            if (xSERIES.IsNotNull())
+                return View(_Service.GetSERIES(xSERIES));
+
             return View(_Service.LookupSERIES().FirstOrDefault());
         }
 
@@ -79,7 +82,7 @@ namespace MTOS.Controllers
                 TempData["message"] = e.Message;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { xSERIES = item.SERIES });
         }
 
         async public Task<ActionResult> Update(PRODUCT item, HttpPostedFileBase uploadfile)
@@ -128,6 +131,19 @@ namespace MTOS.Controllers
         private string getProdPicFileName(PRODUCT item)
         {
             return string.Concat(item.SERIES, "_", item.ID);
+        }
+
+        public ActionResult Info(string xSERIES, string xID)
+        {
+            var doclist = _Service.LookupPRODUCT_DOCUMENT(new ReportQueryViewModel()
+            {
+                Series = xSERIES,
+                ProductID = xID
+            });
+
+            return View(Tuple.Create(_Service.GetPRODUCT(xSERIES, xID),
+                doclist.Where(w => w.DOCUMENT_TYPE == DocType.research.ToString()).OrderBy(o => o.REPORT_DATE).AsEnumerable(),
+                doclist.Where(w => w.DOCUMENT_TYPE == DocType.usecases.ToString()).OrderBy(o => o.REPORT_DATE).AsEnumerable()));
         }
     }
 }

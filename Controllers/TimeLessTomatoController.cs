@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTOS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,17 @@ namespace MTOS.Controllers
 {
     public class TimeLessTomatoController : Controller
     {
-        // GET: TimeLessTomato
+        private MTService _Service;
+
+        public TimeLessTomatoController()
+            : base()
+        {
+            _Service = new MTService();
+        }
         public ActionResult Index()
         {
-            return View();
+            ViewBag.SERIES = "TIMELESS";
+            return View(_Service.LookupPRODUCT(ViewBag.SERIES));
         }
     }
 }

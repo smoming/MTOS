@@ -1,0 +1,68 @@
+﻿@model Tuple<PRODUCT, IEnumerable<PRODUCT_DOCUMENT>, IEnumerable<PRODUCT_DOCUMENT>>
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                @string.Concat("系列/產品代碼: ", Model.Item1.SERIES, " / ", @Model.Item1.ID)
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@string.Concat("產品名稱: ", Model.Item1.NAME)</h5>
+                <p class="card-text">@Model.Item1.DESCRIPTION</p>
+                @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 1%;">
+        <div class="col-md-6">
+            <strong>@DocType.research.GetDescription()</strong>
+        </div>
+        <div class="col-md-6">
+            <strong>@DocType.usecases.GetDescription()</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive col-md-6">
+            <table id="list" class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>報告日期</th>
+                        <th>文件名稱</th>
+                        <th>文件</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var it in Model.Item2)
+                    {
+                        <tr class="alert-info">
+                            <td style="width: 6.2em;">@Html.DisplayFor(m => it.REPORT_DATE)</td>
+                            <td>@Html.DisplayFor(m => it.DOCUMENT_NAME)</td>
+                            <td style="width: 6.2em;">@Html.ActionLink("下載檔案", "DownloadFile", "ResearchUse", new { xGUID = it.GUID }, new { @class = "btn btn-primary btn-sm" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive col-md-6">
+            <table id="list" class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>報告日期</th>
+                        <th>文件名稱</th>
+                        <th>文件</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var it in Model.Item3)
+                    {
+                        <tr class="alert-info">
+                            <td style="width: 6.2em;">@Html.DisplayFor(m => it.REPORT_DATE)</td>
+                            <td>@Html.DisplayFor(m => it.DOCUMENT_NAME)</td>
+                            <td style="width: 6.2em;">@Html.ActionLink("下載檔案", "DownloadFile", "ResearchUse", new { xGUID = it.GUID }, new { @class = "btn btn-primary btn-sm" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
