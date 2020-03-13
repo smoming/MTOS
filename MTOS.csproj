@@ -139,6 +139,7 @@
     <Compile Include="Controllers\CompanyInfoController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeEditController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductRSController.cs" />
     <Compile Include="Controllers\ResearchUseController.cs" />
@@ -401,6 +402,7 @@
     <Content Include="Views\Contact\FeedBack.cshtml" />
     <Content Include="Views\ResearchUse\Index_User.cshtml" />
     <Content Include="Views\ResearchUse\Grid_User.cshtml" />
+    <Content Include="Views\HomeEdit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

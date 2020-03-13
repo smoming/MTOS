@@ -51,7 +51,6 @@
 </div>
 
 <script type="text/javascript">
-    var isadmin = false;
     $(function () {
         $("#ResearchUse").mouseover(function () {
             $("#ResearchUse").find('h5').css("font-size", "2.0rem");
@@ -88,15 +87,5 @@
             $("#Contact").find('h5').css("font-size", "1.0rem");
             $("#Contact").css("opacity", "0.9");
         });
-
-        var user = @Html.Raw(Json.Encode(ViewBag.user));
-        if (user != null) {
-            isadmin = user === 'admin';
-        }
-        if (isadmin) {
-            $('#admintool').show();
-        } else {
-            $('#admintool').hide();
-        }
     });
 </script>

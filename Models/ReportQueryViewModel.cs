@@ -13,4 +13,9 @@ namespace MTOS.Models
         public string ProductID { get; set; }
         public string DocumentType { get; set; }
     }
+
+    public class UploadPicViewModel
+    {
+        public string Name { get; set; }
+    }
 }

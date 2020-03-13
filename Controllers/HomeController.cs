@@ -8,9 +8,8 @@ namespace MTOS.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index(string user = "")
+        public ActionResult Index()
         {
-            ViewBag.user = user;
             return View();
         }
     }

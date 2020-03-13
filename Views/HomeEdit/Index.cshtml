@@ -1,0 +1,65 @@
+﻿@model UploadPicViewModel
+    <div class="container">
+        @using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.DropDownListBuilder(m => m.Name, (IEnumerable<SelectListItem>)ViewBag.HomePic, "首頁圖片")
+                </div>
+                <div class="col-md-3">
+                    @Html.UploadFileBuilder("uploadfile", "選擇檔案")
+                </div>
+                <div class="col-md-3" style="margin-top: 32px;">
+                    @Html.ButtonBuilder(ButtonType.submit, "btnSave", "上傳")
+                </div>
+            </div>
+            <div class="row">
+                <strong id="preview">預覽</strong>
+            </div>
+            <div class="row">
+                <img id="previewimg" src="#" />
+            </div>
+            <div class="row" style="height: 25em;">
+                <div id="HomePic"
+                     class="col-md-12 col-sm-12 col-12 img-fluid img-thumbnail"
+                     style="background-image: url('../Content/img/TIMELESS.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;">
+                </div>
+            </div>
+        }
+    </div>
+<script>
+    $(function () {
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        if (message != null) {
+            alert(message);
+            location.reload(true);
+        }
+
+        loadimg();
+        $('#Name').on('change', loadimg);
+
+        $('#preview, #previewimg').hide();
+        $("#uploadfile").change(function () {
+            readURL(this);
+            $('#preview, #previewimg').show();
+            $('#HomePic').hide();
+        });
+    });
+
+    function loadimg() {
+        $('#HomePic').css('background-image', "url('../Content/img/" + $('#Name').val() + "')");
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+              reader.onload = function (e) {
+                  $('#previewimg').attr('src', e.target.result);
+              };
+            reader.readAsDataURL(input.files[0]);
+        };
+    }
+</script>
