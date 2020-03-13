@@ -1,7 +1,8 @@
-﻿<div class="container">
+﻿@model string
+<div class="container">
     <div class="row" style="height: 15em;">
         <div id="ResearchUse"
-             class="col-md-6 img-fluid img-thumbnail"
+             class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
              style="cursor: pointer;
                     background-image: url('../Content/img/RESEARCHUSE.jpg');
                     background-size: cover;
@@ -12,7 +13,7 @@
             <h5 style="text-align: end; font-weight:bolder;">Research & Use</h5>
         </div>
         <div id="TimeLessTomato"
-             class="col-md-6 img-fluid img-thumbnail"
+             class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
              style="cursor: pointer;
                     background-image: url('../Content/img/TIMELESS.jpg');
                     background-size: cover;
@@ -25,7 +26,7 @@
     </div>
     <div class="row" style="height: 15em;">
         <div id="WoundCare"
-             class="col-md-6 img-fluid img-thumbnail"
+             class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
              style="cursor: pointer;
                     background-image: url('../Content/img/WOUNDCARE.jpg');
                     background-size: cover;
@@ -36,7 +37,7 @@
             <h5 style="text-align: end; font-weight:bolder;">WOUNDCARE</h5>
         </div>
         <div id="Contact"
-             class="col-md-6 img-fluid img-thumbnail"
+             class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
              style="cursor: pointer;
                     background-image: url('../Content/img/CONTACT.jpg');
                     background-size: cover;
@@ -50,41 +51,52 @@
 </div>
 
 <script type="text/javascript">
+    var isadmin = false;
     $(function () {
         $("#ResearchUse").mouseover(function () {
-            $("#ResearchUse").find('h5').css("font-size", "2.5rem");
+            $("#ResearchUse").find('h5').css("font-size", "2.0rem");
             $("#ResearchUse").css("opacity", "0.6");
         });
         $("#ResearchUse").mouseout(function () {
-            $("#ResearchUse").find('h5').css("font-size", "1.25rem");
+            $("#ResearchUse").find('h5').css("font-size", "1.0rem");
             $("#ResearchUse").css("opacity", "0.9");
         });
 
         $("#TimeLessTomato").mouseover(function () {
-            $("#TimeLessTomato").find('h5').css("font-size", "2.5rem");
+            $("#TimeLessTomato").find('h5').css("font-size", "2.0rem");
             $("#TimeLessTomato").css("opacity", "0.6");
         });
         $("#TimeLessTomato").mouseout(function () {
-            $("#TimeLessTomato").find('h5').css("font-size", "1.25rem");
+            $("#TimeLessTomato").find('h5').css("font-size", "1.0rem");
             $("#TimeLessTomato").css("opacity", "0.9");
         });
 
         $("#WoundCare").mouseover(function () {
-            $("#WoundCare").find('h5').css("font-size", "2.5rem");
+            $("#WoundCare").find('h5').css("font-size", "2.0rem");
             $("#WoundCare").css("opacity", "0.6");
         });
         $("#WoundCare").mouseout(function () {
-            $("#WoundCare").find('h5').css("font-size", "1.25rem");
+            $("#WoundCare").find('h5').css("font-size", "1.0rem");
             $("#WoundCare").css("opacity", "0.9");
         });
 
         $("#Contact").mouseover(function () {
-            $("#Contact").find('h5').css("font-size", "2.5rem");
+            $("#Contact").find('h5').css("font-size", "2.0rem");
             $("#Contact").css("opacity", "0.6");
         });
         $("#Contact").mouseout(function () {
-            $("#Contact").find('h5').css("font-size", "1.25rem");
+            $("#Contact").find('h5').css("font-size", "1.0rem");
             $("#Contact").css("opacity", "0.9");
         });
+
+        var user = @Html.Raw(Json.Encode(ViewBag.user));
+        if (user != null) {
+            isadmin = user === 'admin';
+        }
+        if (isadmin) {
+            $('#admintool').show();
+        } else {
+            $('#admintool').hide();
+        }
     });
 </script>
