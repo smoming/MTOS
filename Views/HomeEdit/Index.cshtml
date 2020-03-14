@@ -1,35 +1,40 @@
 ﻿@model UploadPicViewModel
-    <div class="container">
-        @using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <div class="row">
-                <div class="col-md-3">
-                    @Html.DropDownListBuilder(m => m.Name, (IEnumerable<SelectListItem>)ViewBag.HomePic, "首頁圖片")
-                </div>
-                <div class="col-md-3">
-                    @Html.UploadFileBuilder("uploadfile", "選擇檔案")
-                </div>
-                <div class="col-md-3" style="margin-top: 32px;">
-                    @Html.ButtonBuilder(ButtonType.submit, "btnSave", "上傳")
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="6">
+            <h3><strong>首頁編輯 - 維護</strong></h3>
+        </div>
+    </div>
+    @using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-3">
+                @Html.DropDownListBuilder(m => m.Name, (IEnumerable<SelectListItem>)ViewBag.HomePic, "首頁圖片")
             </div>
-            <div class="row">
-                <strong id="preview">預覽</strong>
+            <div class="col-md-3">
+                @Html.UploadFileBuilder("uploadfile", "選擇檔案")
             </div>
-            <div class="row">
-                <img id="previewimg" src="#" />
+            <div class="col-md-3" style="margin-top: 32px;">
+                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "上傳")
             </div>
-            <div class="row" style="height: 25em;">
-                <div id="HomePic"
-                     class="col-md-12 col-sm-12 col-12 img-fluid img-thumbnail"
-                     style="background-image: url('../Content/img/TIMELESS.jpg');
+        </div>
+        <div class="row">
+            <strong id="preview">預覽</strong>
+        </div>
+        <div class="row">
+            <img id="previewimg" src="#" />
+        </div>
+        <div class="row" style="height: 25em;">
+            <div id="HomePic"
+                 class="col-md-12 col-sm-12 col-12 img-fluid img-thumbnail"
+                 style="background-image: url('../Content/img/TIMELESS.jpg');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center center;">
-                </div>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 <script>
     $(function () {
         var message = @Html.Raw(Json.Encode(TempData["message"]));

@@ -23,7 +23,14 @@
             <img class="card-img-top" src="@Url.Content(string.Format("{0}{1}_{2}{3}", Extensions.GetAppSetting("ProdPicSavePath"), p.SERIES, p.ID, p.EXTENSION))" alt="@p.NAME">
             <div class="card-body">
                 <p class="card-text">
-                    @string.Concat(p.DESCRIPTION.Substring(0, 100), " ...")
+                    @if(p.DESCRIPTION.IsNotNullOrEmpty() && p.DESCRIPTION.Length >= 100)
+                    {
+                        string.Concat(p.DESCRIPTION.Substring(0, 100), " ...");
+                    }
+                    else
+                    {
+                        @p.DESCRIPTION;
+                    }
                 <p>
             </div>
             <div class="card-footer">
