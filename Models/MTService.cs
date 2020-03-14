@@ -52,9 +52,9 @@ namespace MTOS.Models
             return _Entity.COMPANY_BASIC_INFO.AsNoTracking();
         }
 
-        public COMPANY_BASIC_INFO GetCOMPANY_BASIC(string xInfoType)
+        public COMPANY_BASIC_INFO GetCOMPANY_BASIC(int xID)
         {
-            return LookupCOMPANY_BASIC_INFO().SingleOrDefault(s => s.INFO_TYPE == xInfoType);
+            return LookupCOMPANY_BASIC_INFO().SingleOrDefault(s => s.ID == xID);
         }
 
         async public Task<string> AddCOMPANY_BASIC(COMPANY_BASIC_INFO item)

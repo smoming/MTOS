@@ -69,6 +69,7 @@ namespace MTOS.Controllers
 
         public ActionResult FeedBack()
         {
+            ViewBag.companyinfo = _Service.LookupCOMPANY_BASIC_INFO().OrderBy(o => o.ID).AsEnumerable();
             return View(new CONTACT_US());
         }
     }

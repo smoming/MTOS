@@ -39,7 +39,7 @@
 
     function SelectReady() {
         $('#list tbody tr').on('click', function () {
-            EditV.load('@Url.Action("Edit")', { xInfoType: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
+            EditV.load('@Url.Action("Edit")', { xID: $(this)[0].cells[0].innerText.replace(/\n/g, "") }, EditReady);
         });
     }
 
@@ -48,7 +48,7 @@
 
         eventCancal();
         $('#btnDelete').on('click', function () {
-            $.post('@Url.Action("Delete")', { xInfoType: EditV.find('#INFO_TYPE').val() }, onSaved);
+            $.post('@Url.Action("Delete")', { xID: EditV.find('#INFO_TYPE').val() }, onSaved);
         });
     }
 

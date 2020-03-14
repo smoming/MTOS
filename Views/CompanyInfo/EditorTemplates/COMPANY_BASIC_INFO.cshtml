@@ -1,4 +1,5 @@
 ﻿@model COMPANY_BASIC_INFO
 
-@Html.TextBoxBuilder(m => m.INFO_TYPE, "代碼")
-@Html.TextBoxBuilder(m => m.CONTENT, "名稱")
+@Html.IntegerBoxBuilder(m => m.ID, "序號")
+@Html.TextBoxBuilder(m => m.NAME, "名稱")
+@Html.TextBoxBuilder(m => m.CONTENT, "內容")

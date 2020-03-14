@@ -4,17 +4,19 @@
     <table id="list" class="table table-bordered table-striped table-hover table-condensed">
         <thead>
             <tr>
-                <th>代碼</th>
+                <th>序號</th>
                 <th>名稱</th>
+                <th>內容</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var it in Model)
             {
-                <tr class="alert-info">
-                    <td>@Html.DisplayFor(m => it.INFO_TYPE)</td>
-                    <td>@Html.DisplayFor(m => it.CONTENT)</td>
-                </tr>
+            <tr class="alert-info">
+                <td>@it.ID</td>
+                <td>@Html.DisplayFor(m => it.NAME)</td>
+                <td>@Html.DisplayFor(m => it.CONTENT)</td>
+            </tr>
             }
         </tbody>
     </table>

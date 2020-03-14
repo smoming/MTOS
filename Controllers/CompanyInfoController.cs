@@ -33,9 +33,9 @@ namespace MTOS.Controllers
             return PartialView(new COMPANY_BASIC_INFO());
         }
 
-        public ActionResult Edit(string xInfoType)
+        public ActionResult Edit(int xID)
         {
-            return PartialView(_Service.GetCOMPANY_BASIC(xInfoType));
+            return PartialView(_Service.GetCOMPANY_BASIC(xID));
         }
 
         async public Task<ActionResult> Add(COMPANY_BASIC_INFO item)
@@ -48,9 +48,9 @@ namespace MTOS.Controllers
             return Content(await _Service.UpdateCOMPANY_BASIC(item));
         }
 
-        async public Task<ActionResult> Delete(string xInfoType)
+        async public Task<ActionResult> Delete(int xID)
         {
-            return Content(await _Service.DeleteCOMPANY_BASIC(_Service.GetCOMPANY_BASIC(xInfoType)));
+            return Content(await _Service.DeleteCOMPANY_BASIC(_Service.GetCOMPANY_BASIC(xID)));
         }
     }
 }

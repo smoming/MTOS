@@ -14,7 +14,8 @@ namespace MTOS.Models
     
     public partial class COMPANY_BASIC_INFO
     {
-        public string INFO_TYPE { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
         public string CONTENT { get; set; }
     }
 }

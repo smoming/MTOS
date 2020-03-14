@@ -14,12 +14,30 @@
     <div class="row">
         <div class="col-md-6">
             @Html.EditorForModel()
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
             @Html.ButtonBuilder(ButtonType.submit, "btnSave", "送出")
             @Html.ButtonBuilder(ButtonType.button, "btnCancel", "清除")
+        </div>
+        <div class="col-md-6">
+            <div class="row" style="height: 35vh;">
+                <div class="col-md-12">
+                    <strong>google map</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>聯絡資訊</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul style="list-style-type:none;">
+                        @foreach (var i in (IEnumerable<COMPANY_BASIC_INFO>)ViewBag.companyinfo)
+                        {
+                            <li style="margin-bottom: 1%">@string.Concat(i.NAME, "：", i.CONTENT)</li>
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 }

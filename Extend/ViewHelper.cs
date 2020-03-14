@@ -79,6 +79,20 @@ namespace MTOS
             return MvcHtmlString.Create(div.ToString(TagRenderMode.StartTag) + label + input + div.ToString(TagRenderMode.EndTag));
         }
 
+        static public MvcHtmlString IntegerBoxBuilder<TModel>(this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, int>> expression, string labelText)
+        {
+            var div = new TagBuilder("div");
+            div.MergeAttribute("class", "form-group");
+
+            var label = helper.LabelFor(expression, labelText).ToHtmlString();
+            string xName = ExpressionHelper.GetExpressionText(expression);
+            decimal xValue = expression.Compile().Invoke(helper.ViewData.Model);
+            var input = helper.TextBox(xName, xValue, new { type = "number", @class = "form-control", onkeypress = "return event.charCode >= 48" }).ToHtmlString();
+
+            return MvcHtmlString.Create(div.ToString(TagRenderMode.StartTag) + label + input + div.ToString(TagRenderMode.EndTag));
+        }
+
         static public MvcHtmlString DateBoxBuilder<TModel>(this HtmlHelper<TModel> helper,
             Expression<Func<TModel, DateTime>> expression, string labelText)
         {
