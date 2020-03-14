@@ -6,19 +6,10 @@
     </div>
 </div>
 
-@*<div class="row">
-    <div class="col-md-12">
-        @foreach (var t in Extensions.GetEnumList<DocType>())
-        {
-            @Html.ActionLink(t.GetDescription(), "Index", "ProductRS", new { xSERIES = "WOUNDCARE", xDOCTYPE = t.ToString() }, new { @class = "btn btn-primary" })
-            <span>&nbsp;</span>
-        }
-    </div>
-</div>*@
 <div class="row">
     @foreach (var p in Model)
     {
-        <div class="card" style="width: 30%; margin: 1.2%;">
+        <div class="card" style="width: 30%; margin: 1.5%;">
             <div class="card-header">@p.NAME</div>
             <img class="card-img-top" src="@Url.Content(string.Format("{0}{1}_{2}{3}", Extensions.GetAppSetting("ProdPicSavePath"), p.SERIES, p.ID, p.EXTENSION))" alt="@p.NAME">
             <div class="card-body">

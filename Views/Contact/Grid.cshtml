@@ -7,7 +7,7 @@
                 <th class="hidden">KEY</th>
                 <th>姓名</th>
                 <th>電子信箱</th>
-                <th>訊息內容</th>
+                <th>主題</th>
             </tr>
         </thead>
         <tbody>
@@ -15,9 +15,9 @@
             {
             <tr class="alert-info">
                 <td class="hidden">@Html.DisplayFor(m => it.GUID)</td>
-                <td>@Html.DisplayFor(m => it.NAME)</td>
+                <td>@string.Concat(it.LAST_NAME, " ", it.NAME)</td>
                 <td>@Html.DisplayFor(m => it.EMAIL)</td>
-                <td>@Html.DisplayFor(m => it.MESSAGE)</td>
+                <td>@Html.DisplayFor(m => it.SUBJECT)</td>
             </tr>
             }
         </tbody>

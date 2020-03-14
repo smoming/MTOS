@@ -1,32 +1,30 @@
 ﻿@model CONTACT_US
 
-<div class="container">
-    @Html.HiddenFor(m => m.GUID)
-    <div class="row">
-        <div class="col-md-3">
-            @Html.TextBoxBuilder(m => m.LAST_NAME, "姓氏")
-        </div>
-        <div class="col-md-3">
-            @Html.TextBoxBuilder(m => m.EMAIL, "電子信箱")
-        </div>
+@Html.HiddenFor(m => m.GUID)
+<div class="row">
+    <div class="col-md-6">
+        @Html.TextBoxBuilder(m => m.LAST_NAME, "姓氏")
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            @Html.TextBoxBuilder(m => m.NAME, "名子")
-        </div>
-        <div class="col-md-3">
-            @Html.TextBoxBuilder(m => m.PHONE, "電話")
-        </div>
+    <div class="col-md-6">
+        @Html.TextBoxBuilder(m => m.EMAIL, "電子信箱")
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            @Html.TextBoxBuilder(m => m.SUBJECT, "主題")
-        </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @Html.TextBoxBuilder(m => m.NAME, "名子")
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            @Html.TextAreaBuilder(m => m.MESSAGE, "訊息內容")
-        </div>
+    <div class="col-md-6">
+        @Html.TextBoxBuilder(m => m.PHONE, "電話")
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11">
+        @Html.TextBoxBuilder(m => m.SUBJECT, "主題")
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-11">
+        @Html.TextAreaBuilder(m => m.MESSAGE, "訊息內容")
     </div>
 </div>
 
@@ -35,6 +33,7 @@
         max-width: none;
         width: 100%;
     }
+
     #MESSAGE {
         height: 10em;
     }

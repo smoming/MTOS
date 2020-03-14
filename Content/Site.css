@@ -36,8 +36,12 @@ textarea {
     border-color: #337ab7;
 }
 
-    .btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover {
-        background-color: #337ab7;
-        border-color: #337ab7;
-        opacity: 0.8;
-    }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    opacity: 0.8;
+}
+
+.row {
+    margin-left: 0px;
+}

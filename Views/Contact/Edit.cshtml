@@ -6,16 +6,18 @@
     Url = Url.Action("Update")
 }))
 {
-    <div class="row">
-        <div class="col-md-12">
-            @Html.EditorForModel()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.EditorForModel()
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            @Html.ButtonBuilder(ButtonType.submit, "btnSave", "儲存")
-            @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
-            @Html.ButtonBuilder(ButtonType.button, "btnDelete", "刪除")
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "儲存")
+                @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
+                @Html.ButtonBuilder(ButtonType.button, "btnDelete", "刪除")
+            </div>
         </div>
     </div>
 }

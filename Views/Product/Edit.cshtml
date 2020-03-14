@@ -5,22 +5,24 @@
 
 @using (Html.BeginForm("Update", Html.ControllerName(), FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="row">
-        <div class="col-md-12">
-            @Html.HiddenFor(m => m.SERIES)
-            @Html.EditorForModel()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.HiddenFor(m => m.SERIES)
+                @Html.EditorForModel()
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            @Html.ButtonBuilder(ButtonType.submit, "btnSave", "儲存")
-            @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
-            @Html.ButtonBuilder(ButtonType.button, "btnDelete", "刪除")
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "儲存")
+                @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
+                @Html.ButtonBuilder(ButtonType.button, "btnDelete", "刪除")
+            </div>
         </div>
-    </div>
-    <div class="row" style="margin-top:2%;">
-        <div class="col-md-12">
-            <img src="@Url.Content(picpath)" class="img-fluid img-thumbnail" />
+        <div class="row" style="margin-top:2%;">
+            <div class="col-md-12">
+                <img src="@Url.Content(picpath)" class="img-fluid img-thumbnail" />
+            </div>
         </div>
     </div>
 }

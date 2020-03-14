@@ -2,19 +2,19 @@
 
 @using (Html.BeginForm("AdminList", Html.ControllerName()))
 {
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 @Html.TextBoxBuilder(m => m.Name, "帳號")
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 @Html.TextBoxBuilder(m => m.Password, "密碼")
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 @Html.ButtonBuilder(ButtonType.submit, "btnSave", "登入")
                 @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
             </div>

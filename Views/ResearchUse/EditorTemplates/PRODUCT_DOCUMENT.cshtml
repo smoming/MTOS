@@ -3,33 +3,31 @@
 @Html.HiddenFor(m => m.GUID, "KEY")
 @Html.HiddenFor(m => m.EXTENSION, "附檔名")
 @Html.HiddenFor(m => m.MODIFY_DATE, "異動日期")
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            @Html.DropDownListBuilder(m => m.SERIES, Shared.SeriesList(), "系列")
-        </div>
-        <div class="col-md-3">
-            @Html.DropDownListBuilder(m => m.PRODUCT_ID, Shared.ProductList(Model.SERIES), "產品代碼")
-        </div>
-        <div class="col-md-3">
-            @Html.DropDownListBuilder(m => m.DOCUMENT_TYPE, Shared.DocTypeList(), "文件類型")
-        </div>
-        <div class="col-md-3">
-            @Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
-        </div>
+<div class="row">
+    <div class="col-md-3">
+        @Html.DropDownListBuilder(m => m.SERIES, Shared.SeriesList(), "系列")
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            @Html.UploadFileBuilder("uploadfile", "選擇檔案")
-        </div>
-        <div class="col-md-6">
-            @Html.TextBoxBuilder(m => m.DOCUMENT_NAME, "文件名稱")
-        </div>
+    <div class="col-md-3">
+        @Html.DropDownListBuilder(m => m.PRODUCT_ID, Shared.ProductList(Model.SERIES), "產品代碼")
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            @Html.TextAreaBuilder(m => m.REMARK, "備註")
-        </div>
+    <div class="col-md-3">
+        @Html.DropDownListBuilder(m => m.DOCUMENT_TYPE, Shared.DocTypeList(), "文件類型")
+    </div>
+    <div class="col-md-3">
+        @Html.DateBoxBuilder(m => m.REPORT_DATE, "報告日期")
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        @Html.UploadFileBuilder("uploadfile", "選擇檔案")
+    </div>
+    <div class="col-md-6">
+        @Html.TextBoxBuilder(m => m.DOCUMENT_NAME, "文件名稱")
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @Html.TextAreaBuilder(m => m.REMARK, "備註")
     </div>
 </div>
 
