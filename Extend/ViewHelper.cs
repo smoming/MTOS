@@ -35,6 +35,18 @@ namespace MTOS
             return MvcHtmlString.Create(div.ToString(TagRenderMode.StartTag) + label + input + div.ToString(TagRenderMode.EndTag));
         }
 
+        static public MvcHtmlString PasswordBuilder<TModel, TProperty>(this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TProperty>> expression, string labelText)
+        {
+            var div = new TagBuilder("div");
+            div.MergeAttribute("class", "form-group");
+
+            var label = helper.LabelFor(expression, labelText).ToHtmlString();
+            var input = helper.PasswordFor(expression, new { @class = "form-control" }).ToHtmlString();
+
+            return MvcHtmlString.Create(div.ToString(TagRenderMode.StartTag) + label + input + div.ToString(TagRenderMode.EndTag));
+        }
+
         static public MvcHtmlString DropDownListBuilder<TModel, TProperty>(this HtmlHelper<TModel> helper,
             Expression<Func<TModel, TProperty>> expression, IEnumerable<SelectListItem> selectList, string labelText, bool optionalBlank = false)
         {
