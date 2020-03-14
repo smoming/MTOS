@@ -16,6 +16,5 @@ namespace MTOS.Models
     {
         public string ID { get; set; }
         public string NAME { get; set; }
-        public string OFFICIAL_SITE { get; set; }
     }
 }

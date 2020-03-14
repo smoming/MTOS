@@ -22,6 +22,11 @@
             @Html.TextAreaBuilder(m => m.DESCRIPTION, "產品描述")
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.TextBoxBuilder(m => m.OFFICIAL_SITE, "官方網站")
+        </div>
+    </div>
     @Html.HiddenFor(m => m.EXTENSION)
 </div>
 
@@ -30,7 +35,7 @@
         width: auto;
     }
 
-    #DESCRIPTION {
+    #DESCRIPTION,#OFFICIAL_SITE {
         max-width: none;
         width: 100%;
     }

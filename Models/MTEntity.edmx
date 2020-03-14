@@ -34,6 +34,7 @@
           <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="EXTENSION" Type="varchar" MaxLength="10" />
+          <Property Name="OFFICIAL_SITE" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="PRODUCT_DOCUMENT">
           <Key>
@@ -55,7 +56,6 @@
           </Key>
           <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="OFFICIAL_SITE" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="MTDBModelStoreContainer">
           <EntitySet Name="COMPANY_BASIC_INFO" EntityType="Self.COMPANY_BASIC_INFO" Schema="dbo" store:Type="Tables" />
@@ -71,9 +71,9 @@
         <EntityContainer Name="MTDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="COMPANY_BASIC_INFO" EntityType="MTDBModel.COMPANY_BASIC_INFO" />
           <EntitySet Name="PRODUCT_DOCUMENT" EntityType="MTDBModel.PRODUCT_DOCUMENT" />
-          <EntitySet Name="SERIES" EntityType="MTDBModel.SERIES" />
           <EntitySet Name="CONTACT_US" EntityType="MTDBModel.CONTACT_US" />
           <EntitySet Name="PRODUCT" EntityType="MTDBModel.PRODUCT" />
+          <EntitySet Name="SERIES" EntityType="MTDBModel.SERIES" />
         </EntityContainer>
         <EntityType Name="COMPANY_BASIC_INFO">
           <Key>
@@ -95,14 +95,6 @@
           <Property Name="EXTENSION" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MODIFY_DATE" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="SERIES">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OFFICIAL_SITE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CONTACT_US">
           <Key>
@@ -126,6 +118,14 @@
           <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="EXTENSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OFFICIAL_SITE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SERIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -156,15 +156,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SERIES">
-            <EntityTypeMapping TypeName="MTDBModel.SERIES">
-              <MappingFragment StoreEntitySet="SERIES">
-                <ScalarProperty Name="OFFICIAL_SITE" ColumnName="OFFICIAL_SITE" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CONTACT_US">
             <EntityTypeMapping TypeName="MTDBModel.CONTACT_US">
               <MappingFragment StoreEntitySet="CONTACT_US">
@@ -181,11 +172,20 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="MTDBModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="OFFICIAL_SITE" ColumnName="OFFICIAL_SITE" />
                 <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SERIES" ColumnName="SERIES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERIES">
+            <EntityTypeMapping TypeName="MTDBModel.SERIES">
+              <MappingFragment StoreEntitySet="SERIES">
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -6,15 +6,6 @@
     </div>
 </div>
 
-@*<div class="row">
-    <div class="col-md-12">
-        @foreach (var t in Extensions.GetEnumList<DocType>())
-        {
-            @Html.ActionLink(t.GetDescription(), "Index", "ProductRS", new { xSERIES = "TIMELESS", xDOCTYPE = t.ToString() }, new { @class = "btn btn-primary" })
-            <span>&nbsp;</span>
-        }
-    </div>
-</div>*@
 <div class="row">
     @foreach (var p in Model)
     {
@@ -23,7 +14,7 @@
             <img class="card-img-top" src="@Url.Content(string.Format("{0}{1}_{2}{3}", Extensions.GetAppSetting("ProdPicSavePath"), p.SERIES, p.ID, p.EXTENSION))" alt="@p.NAME">
             <div class="card-body">
                 <p class="card-text">
-                    @if(p.DESCRIPTION.IsNotNullOrEmpty() && p.DESCRIPTION.Length >= 100)
+                    @if (p.DESCRIPTION.IsNotNullOrEmpty() && p.DESCRIPTION.Length >= 100)
                     {
                         string.Concat(p.DESCRIPTION.Substring(0, 100), " ...");
                     }
@@ -34,7 +25,11 @@
                 <p>
             </div>
             <div class="card-footer">
-                @Html.ActionLink("查看資訊", "Info", "Product", new { xSERIES = ViewBag.SERIES, xID = p.ID }, null)
+                @Html.ActionLink("查看商品資訊", "Info", "Product", new { xSERIES = ViewBag.SERIES, xID = p.ID }, null)
+                @if (p.OFFICIAL_SITE.IsNotNullOrEmpty())
+                {
+                    <a href="@p.OFFICIAL_SITE" style="margin-left:1.5%;">官方網站</a>
+                }
             </div>
         </div>
     }
