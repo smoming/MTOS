@@ -27,7 +27,11 @@
                 <p>
             </div>
             <div class="card-footer">
-                @Html.ActionLink("查看資訊", "Info", "Product", new { xSERIES = ViewBag.SERIES, xID = p.ID }, null)
+                @Html.ActionLink("查看商品資訊", "Info", "Product", new { xSERIES = ViewBag.SERIES, xID = p.ID }, null)
+                @if (p.OFFICIAL_SITE.IsNotNullOrEmpty())
+                {
+                    <a href="@p.OFFICIAL_SITE" style="margin-left:1.5%;">官方網站</a>
+                }
             </div>
         </div>
     }
