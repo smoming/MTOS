@@ -405,6 +405,7 @@
     <Content Include="Views\ResearchUse\Grid_User.cshtml" />
     <Content Include="Views\HomeEdit\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AdminList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

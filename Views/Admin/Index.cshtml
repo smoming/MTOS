@@ -1,17 +1,36 @@
-﻿@{
-    var list = new Dictionary<string, string>()
+﻿@model LoginViewModel
+
+@using (Html.BeginForm("AdminList", Html.ControllerName()))
 {
-        {"HomeEdit", "首頁編輯"},
-        {"ResearchUse", "研究/使用個案"},
-        {"Product", "產品維護"},
-        {"CompanyInfo", "公司資訊"},
-        {"Contact", "聯絡我們"}
-    };
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @Html.TextBoxBuilder(m => m.Name, "帳號")
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @Html.TextBoxBuilder(m => m.Password, "密碼")
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "登入")
+                @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
+            </div>
+        </div>
+    </div>
 }
 
-<div class="list-group">
-    @foreach (var it in list)
-    {
-        <a href="/@it.Key" class="list-group-item list-group-item-action list-group-item-info">@string.Concat(it.Value, " 維護")</a>
-    }
-</div>
+<script type="text/javascript">
+    $(function () {
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        if (message != null) {
+            alert(message);
+        }
+
+        $('#btnCancel').on('click', function () {
+            location.href = '/Home';
+        });
+    });
+</script>

@@ -18,4 +18,10 @@ namespace MTOS.Models
     {
         public string Name { get; set; }
     }
+
+    public class LoginViewModel
+    {
+        public string Name { get; set; }
+        public string Password { get; set; }
+    }
 }

@@ -1,0 +1,17 @@
+﻿@{
+    var list = new Dictionary<string, string>()
+{
+        {"HomeEdit", "首頁編輯"},
+        {"ResearchUse", "研究/使用個案"},
+        {"Product", "產品維護"},
+        {"CompanyInfo", "公司資訊"},
+        {"Contact", "聯絡我們"}
+    };
+}
+
+<div class="list-group">
+    @foreach (var it in list)
+    {
+        <a href="/@it.Key" class="list-group-item list-group-item-action list-group-item-info">@string.Concat(it.Value, " 維護")</a>
+    }
+</div>
