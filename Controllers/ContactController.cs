@@ -30,7 +30,10 @@ namespace MTOS.Controllers
 
         public ActionResult Create()
         {
-            return PartialView(new CONTACT_US());
+            return PartialView(new CONTACT_US()
+            {
+                SUBSCRIPTION = true
+            });
         }
 
         public ActionResult Edit(string xGUID)
@@ -70,7 +73,10 @@ namespace MTOS.Controllers
         public ActionResult FeedBack()
         {
             ViewBag.companyinfo = _Service.LookupCOMPANY_BASIC_INFO().OrderBy(o => o.ID).AsEnumerable();
-            return View(new CONTACT_US());
+            return View(new CONTACT_US()
+            {
+                SUBSCRIPTION = true
+            });
         }
     }
 }

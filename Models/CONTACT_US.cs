@@ -21,5 +21,6 @@ namespace MTOS.Models
         public string PHONE { get; set; }
         public string SUBJECT { get; set; }
         public string MESSAGE { get; set; }
+        public bool SUBSCRIPTION { get; set; }
     }
 }

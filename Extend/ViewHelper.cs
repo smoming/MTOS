@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
 namespace MTOS
-{    
+{
     static public class ViewHelper
     {
         static public MvcHtmlString ButtonBuilder(this HtmlHelper helper,
@@ -191,7 +191,7 @@ namespace MTOS
             return helper.Partial("Accordion", Tuple.Create(value, titleTitle));
         }
 
-        static public MvcHtmlString UploadFileBuilder(this HtmlHelper helper, 
+        static public MvcHtmlString UploadFileBuilder(this HtmlHelper helper,
             string name,
             string labelText)
         {

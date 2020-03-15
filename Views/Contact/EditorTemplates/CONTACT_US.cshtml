@@ -27,6 +27,14 @@
         @Html.TextAreaBuilder(m => m.MESSAGE, "訊息內容")
     </div>
 </div>
+<div class="row">
+    <div class="col-md-11">
+        @Html.DropDownListBuilder(m => m.SUBSCRIPTION, 
+            new List<SelectListItem>() { 
+                new SelectListItem() { Value = Boolean.TrueString, Text = "是"},
+                new SelectListItem() { Value = Boolean.FalseString, Text = "否"} }, "訂閱")
+    </div>
+</div>
 
 <style>
     #SUBJECT, #MESSAGE {
