@@ -1,4 +1,7 @@
 ﻿@model CONTACT_US
+@{
+    string google_map = Extensions.GetAppSetting("googlemap");
+}
 
 @using (Ajax.BeginForm(new AjaxOptions()
 {
@@ -20,10 +23,16 @@
         <div class="col-md-6">
             <div class="row" style="height: 35vh;">
                 <div class="col-md-12">
-                    <strong>google map</strong>
+                    <iframe src="@google_map"
+                            frameborder="0"
+                            style="border:0; width:90%; height:100%;"
+                            allowfullscreen=""
+                            aria-hidden="false"
+                            tabindex="0">
+                    </iframe>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top: 1%;">
                 <div class="col-md-12">
                     <strong>聯絡資訊</strong>
                 </div>
