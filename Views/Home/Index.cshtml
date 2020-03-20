@@ -1,112 +1,15 @@
-﻿@*<div class="container-fluid">
-        <div class="row" style="height: 40vh;">
-            <div id="ResearchUse"
-                 class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
-                 style="cursor: pointer;
-                        background-image: url('../Content/img/RESEARCHUSE.jpg');
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        max-width: 49.5%;"
-                 onclick="window.location = '/ResearchUse/Index_User';">
-                <h5 style="text-align: end; font-weight:bolder;">Research & Use</h5>
-            </div>
-            <div id="TimeLessTomato"
-                 class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
-                 style="cursor: pointer;
-                        background-image: url('../Content/img/TIMELESS.jpg');
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        max-width: 49%;"
-                 onclick="window.location = '/TimeLessTomato';">
-                <h5 style="text-align: start; font-weight:bolder;">TimeLess Tomato</h5>
-            </div>
-        </div>
-        <div class="row" style="height: 40vh;">
-            <div id="WoundCare"
-                 class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
-                 style="cursor: pointer;
-                        background-image: url('../Content/img/WOUNDCARE.jpg');
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        max-width: 49.5%;"
-                 onclick="window.location = '/WoundCare';">
-                <h5 style="text-align: end; font-weight:bolder;">WOUNDCARE</h5>
-            </div>
-            <div id="Contact"
-                 class="col-md-6 col-sm-12 col-12 img-fluid img-thumbnail"
-                 style="cursor: pointer;
-                        background-image: url('../Content/img/CONTACT.jpg');
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        max-width: 49%;"
-                 onclick="window.location = '/Contact/FeedBack';">
-                <h5 style="text-align: start; font-weight:bolder;">Contact Us</h5>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-        $(function () {
-            $("#ResearchUse").mouseover(function () {
-                $("#ResearchUse").find('h5').css("font-size", "2.0rem");
-                $("#ResearchUse").css("opacity", "0.6");
-            });
-            $("#ResearchUse").mouseout(function () {
-                $("#ResearchUse").find('h5').css("font-size", "1.0rem");
-                $("#ResearchUse").css("opacity", "0.9");
-            });
-
-            $("#TimeLessTomato").mouseover(function () {
-                $("#TimeLessTomato").find('h5').css("font-size", "2.0rem");
-                $("#TimeLessTomato").css("opacity", "0.6");
-            });
-            $("#TimeLessTomato").mouseout(function () {
-                $("#TimeLessTomato").find('h5').css("font-size", "1.0rem");
-                $("#TimeLessTomato").css("opacity", "0.9");
-            });
-
-            $("#WoundCare").mouseover(function () {
-                $("#WoundCare").find('h5').css("font-size", "2.0rem");
-                $("#WoundCare").css("opacity", "0.6");
-            });
-            $("#WoundCare").mouseout(function () {
-                $("#WoundCare").find('h5').css("font-size", "1.0rem");
-                $("#WoundCare").css("opacity", "0.9");
-            });
-
-            $("#Contact").mouseover(function () {
-                $("#Contact").find('h5').css("font-size", "2.0rem");
-                $("#Contact").css("opacity", "0.6");
-            });
-            $("#Contact").mouseout(function () {
-                $("#Contact").find('h5').css("font-size", "1.0rem");
-                $("#Contact").css("opacity", "0.9");
-            });
-        });
-    </script>*@
-
-<div id="content" 
-     style="width: 100%; 
-            height: calc(100vh - 100px); 
-            background-color: #b0e0e6; 
+﻿<div id="content"
+     style="width: 100%;
+            height: calc(100vh - 100px);
+            background-color: #b0e0e6;
             display: inline-flex;
             background-image: url('../Content/img/HOME.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;">
     <div class="row" style="align-items: flex-end; justify-content: center; width: 100%; margin-bottom: 3%;">
-        <div class="col-md-3 img-fluid img-thumbnail"
-             style="background-color: rgba(109, 204, 163, 0.9);
-                    border: 0px;
-                    display: grid;
-                    color: white;
-                    font-family: Arial,Helvetica,sans-serif;
-                    margin: 0.5%;
-                    height: 35%;">
+        <div class="col-md-3 box"
+             style="background-color: rgba(109, 204, 163, 0.9);">
             <div>
                 <h4 style="font-weight:bolder; margin-top: 5%;">TimeLess Tomato</h4>
             </div>
@@ -115,28 +18,14 @@
             </div>
             <div id="TimeLessTomato" style="height:41px; min-height:18px; width:107px;">
                 <a href="/TimeLessTomato"
-                   style="background-color: rgba(4, 59, 36, 0.15);
-                            color: #FFFFFF;
-                            position: absolute;
-                            text-decoration: none;
-                            width: 40%;
-                            height: 20%;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;">
+                   class="link"
+                   style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
                 </a>
             </div>
         </div>
-        <div
-             class="col-md-3 img-fluid img-thumbnail"
-             style="background-color: rgba(13, 178, 107, 0.9);
-                    border: 0px;
-                    display: grid;
-                    color: white;
-                    font-family: Arial,Helvetica,sans-serif;
-                    margin: 0.5%;
-                    height: 35%;">
+        <div class="col-md-3 box"
+             style="background-color: rgba(13, 178, 107, 0.9);">
             <div>
                 <h4 style="font-weight:bolder; margin-top: 5%;">WoundCare</h4>
             </div>
@@ -145,28 +34,14 @@
             </div>
             <div id="WoundCare" style="height:41px; min-height:18px; width:107px;">
                 <a href="/WoundCare"
-                   style="background-color: rgba(4, 59, 36, 0.15);
-                            color: #FFFFFF;
-                            position: absolute;
-                            text-decoration: none;
-                            width: 40%;
-                            height: 20%;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;">
+                   class="link"
+                   style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
                 </a>
             </div>
         </div>
-        <div
-             class="col-md-3 img-fluid img-thumbnail"
-             style="background-color: rgba(9, 119, 71, 0.9);
-                    border: 0px;
-                    display: grid;
-                    color: white;
-                    font-family: Arial,Helvetica,sans-serif;
-                    margin: 0.5%;
-                    height: 35%;">
+        <div class="col-md-3 box"
+             style="background-color: rgba(9, 119, 71, 0.9);">
             <div>
                 <h4 style="font-weight:bolder; margin-top: 5%;">Research & Use</h4>
             </div>
@@ -175,15 +50,8 @@
             </div>
             <div id="ResearchUse" style="height:41px; min-height:18px; width:107px;">
                 <a href="/ResearchUse/Index_User"
-                   style="background-color: rgba(4, 59, 36, 0.15);
-                            color: #FFFFFF;
-                            position: absolute;
-                            text-decoration: none;
-                            width: 40%;
-                            height: 20%;
-                            justify-content: center;
-                            align-items: center;
-                            display: flex;">
+                   class="link"
+                   style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
                 </a>
             </div>
@@ -215,3 +83,25 @@
         });
     });
 </script>
+
+<style>
+    .link {
+        position: absolute;
+        width: 40%;
+        height: 20%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        text-decoration: none;
+        color: white;
+    }
+
+    .box {
+        border: 0px;
+        display: grid;
+        color: white;
+        font-family: Arial,Helvetica,sans-serif;
+        margin: 0.5%;
+        height: 35%;
+    }
+</style>
