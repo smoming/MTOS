@@ -10,12 +10,7 @@ namespace MTOS.Controllers
 {
     public class HomeEditController : BaseController
     {
-        private List<SelectListItem> PicList = new List<SelectListItem>() {
-                new SelectListItem() { Value = "CONTACT.jpg", Text = "CONTACT"},
-                new SelectListItem() { Value = "RESEARCHUSE.jpg", Text = "RESEARCHUSE"},
-                new SelectListItem() { Value = "TIMELESS.jpg", Text = "TIMELESS"},
-                new SelectListItem() { Value = "WOUNDCARE.jpg", Text = "WOUNDCARE"}
-            };
+        private readonly string _PATH = "HomePicSavePath";
         private List<string> _AllowedExtextsion =
             Extensions.GetAppSetting("ProdPicType").Split(',')
             .Select(s => string.Concat(".", s))
@@ -24,6 +19,10 @@ namespace MTOS.Controllers
         // GET: HomeEdit
         public ActionResult Index(string xNAME = "")
         {
+            string path = Server.MapPath(Extensions.GetAppSetting(_PATH));
+            var PicList = Directory.GetFiles(path)
+                .Select(s => s.Replace(path, ""))
+                .Select(s => new SelectListItem() { Value = s, Text = s });
             ViewBag.HomePic = PicList;
             var item = new UploadPicViewModel() { Name = PicList.First().Value };
             if (xNAME.IsNotNullOrEmpty())
@@ -41,7 +40,7 @@ namespace MTOS.Controllers
                 {
                     if (_AllowedExtextsion.Contains(uploadfile.GetFileExtension().ToLower()))
                     {
-                        string fullname = Path.Combine(Server.MapPath(Extensions.GetAppSetting("HomePicSavePath")), Name);
+                        string fullname = Path.Combine(Server.MapPath(Extensions.GetAppSetting(_PATH)), Name);
                         if (System.IO.File.Exists(fullname))
                         {
                             System.IO.File.Delete(fullname);
