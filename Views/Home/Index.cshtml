@@ -1,4 +1,5 @@
-﻿<div id="content"
+﻿@model HOMEEDIT
+<div id="content"
      style="width: 100%;
             height: calc(100vh - 100px);
             background-color: #b0e0e6;
@@ -11,13 +12,13 @@
         <div class="col-md-3 box"
              style="background-color: rgba(109, 204, 163, 0.9);">
             <div>
-                <h4 style="font-weight:bolder; margin-top: 5%;">TimeLess Tomato</h4>
+                <h4 style="font-weight:bolder; margin-top: 5%;">@Model.TITLE1</h4>
             </div>
             <div>
-                <p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>
+                <p>@Model.CONTENT1</p>
             </div>
-            <div id="TimeLessTomato" style="height:41px; min-height:18px; width:107px;">
-                <a href="/TimeLessTomato"
+            <div id="Link1" style="height:41px; min-height:18px; width:107px;">
+                <a href="@Model.LINK1"
                    class="link"
                    style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
@@ -27,13 +28,13 @@
         <div class="col-md-3 box"
              style="background-color: rgba(13, 178, 107, 0.9);">
             <div>
-                <h4 style="font-weight:bolder; margin-top: 5%;">WoundCare</h4>
+                <h4 style="font-weight:bolder; margin-top: 5%;">@Model.TITLE2</h4>
             </div>
             <div>
-                <p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>
+                <p>@Model.CONTENT2</p>
             </div>
-            <div id="WoundCare" style="height:41px; min-height:18px; width:107px;">
-                <a href="/WoundCare"
+            <div id="Link2" style="height:41px; min-height:18px; width:107px;">
+                <a href="@Model.LINK2"
                    class="link"
                    style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
@@ -43,13 +44,13 @@
         <div class="col-md-3 box"
              style="background-color: rgba(9, 119, 71, 0.9);">
             <div>
-                <h4 style="font-weight:bolder; margin-top: 5%;">Research & Use</h4>
+                <h4 style="font-weight:bolder; margin-top: 5%;">@Model.TITLE3</h4>
             </div>
             <div>
-                <p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>
+                <p>@Model.CONTENT3</p>
             </div>
-            <div id="ResearchUse" style="height:41px; min-height:18px; width:107px;">
-                <a href="/ResearchUse/Index_User"
+            <div id="Link3" style="height:41px; min-height:18px; width:107px;">
+                <a href="@Model.LINK3"
                    class="link"
                    style="background-color: rgba(4, 59, 36, 0.15);">
                     <span>Read More</span>
@@ -58,31 +59,6 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(function () {
-        $("#ResearchUse").mouseover(function () {
-            $("#ResearchUse").css("opacity", "0.6");
-        });
-        $("#ResearchUse").mouseout(function () {
-            $("#ResearchUse").css("opacity", "1");
-        });
-
-        $("#WoundCare").mouseover(function () {
-            $("#WoundCare").css("opacity", "0.6");
-        });
-        $("#WoundCare").mouseout(function () {
-            $("#WoundCare").css("opacity", "1");
-        });
-
-        $("#TimeLessTomato").mouseover(function () {
-            $("#TimeLessTomato").css("opacity", "0.6");
-        });
-        $("#TimeLessTomato").mouseout(function () {
-            $("#TimeLessTomato").css("opacity", "1");
-        });
-    });
-</script>
 
 <style>
     .link {

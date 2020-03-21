@@ -210,5 +210,19 @@ namespace MTOS.Models
         }
 
         #endregion
+
+        #region HOMEEDIT
+
+        public HOMEEDIT GetHOMEEDIT()
+        {
+            return _Entity.HOMEEDIT.AsNoTracking().SingleOrDefault();
+        }
+
+        async public Task<string> UpdateHOMEEDIT(HOMEEDIT item)
+        {
+            return await Save<HOMEEDIT>(EntityState.Modified, item);
+        }
+
+        #endregion
     }
 }

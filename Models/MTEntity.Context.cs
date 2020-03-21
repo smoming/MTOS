@@ -25,10 +25,11 @@ namespace MTOS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<PRODUCT_DOCUMENT> PRODUCT_DOCUMENT { get; set; }
-        public virtual DbSet<PRODUCT> PRODUCT { get; set; }
-        public virtual DbSet<SERIES> SERIES { get; set; }
         public virtual DbSet<COMPANY_BASIC_INFO> COMPANY_BASIC_INFO { get; set; }
         public virtual DbSet<CONTACT_US> CONTACT_US { get; set; }
+        public virtual DbSet<PRODUCT> PRODUCT { get; set; }
+        public virtual DbSet<PRODUCT_DOCUMENT> PRODUCT_DOCUMENT { get; set; }
+        public virtual DbSet<SERIES> SERIES { get; set; }
+        public virtual DbSet<HOMEEDIT> HOMEEDIT { get; set; }
     }
 }

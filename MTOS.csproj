@@ -160,6 +160,9 @@
     <Compile Include="Models\CONTACT_US.cs">
       <DependentUpon>MTEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HOMEEDIT.cs">
+      <DependentUpon>MTEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MTEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,4 +1,4 @@
-﻿@model UploadPicViewModel
+﻿@model HomeEditViewModel
 <div class="container-fluid">
     <div class="row">
         <div class="6">
@@ -15,7 +15,8 @@
                 @Html.UploadFileBuilder("uploadfile", "選擇檔案")
             </div>
             <div class="col-md-3" style="margin-top: 32px;">
-                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "上傳")
+                @Html.ButtonBuilder(ButtonType.submit, "btnSave", "更新")
+                @Html.ButtonBuilder(ButtonType.button, "btnCancel", "取消")
             </div>
         </div>
         <div class="row">
@@ -24,13 +25,82 @@
         <div class="row">
             <img id="previewimg" src="#" />
         </div>
-        <div class="row" style="height: 25em;">
-            <div id="HomePic"
-                 class="col-md-12 col-sm-12 col-12 img-fluid img-thumbnail"
-                 style="background-image: url('../Content/img/TIMELESS.jpg');
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center center;">
+        @*    <div class="row" style="height: 25em;">
+                <div id="HomePic"
+                     class="col-md-12 col-sm-12 col-12 img-fluid img-thumbnail"
+                     style="background-image: url('../Content/img/TIMELESS.jpg');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center center;">
+                </div>
+            </div>*@
+        <div id="content"
+             style="width: 100%;
+                height: calc(100vh - 100px);
+                background-color: #b0e0e6;
+                display: inline-flex;
+                background-image: url('../Content/img/HOME.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;">
+            <div class="row" style="align-items: center; justify-content: center; width: 100%; margin-bottom: 3%;">
+                <div class="col-md-3 box"
+                     style="background-color: rgba(109, 204, 163, 0.9);">
+                    <div>
+                        @*<h4 style="font-weight:bolder; margin-top: 5%;">TimeLess Tomato</h4>*@
+                        @Html.TextBoxBuilder(m => m.Title1, "標題一")
+                    </div>
+                    <div>
+                        @*<p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>*@
+                        @Html.TextAreaBuilder(m => m.Content1, "內容一")
+                    </div>
+                    <div id="Link1" style="height:41px; min-height:18px;">
+                        @*<a href="/TimeLessTomato"
+                               class="link"
+                               style="background-color: rgba(4, 59, 36, 0.15);">
+                                <span>Read More</span>
+                            </a>*@
+                        @Html.TextBoxBuilder(m => m.Link1, "連結一")
+                    </div>
+                </div>
+                <div class="col-md-3 box"
+                     style="background-color: rgba(13, 178, 107, 0.9);">
+                    <div>
+                        @*<h4 style="font-weight:bolder; margin-top: 5%;">WoundCare</h4>*@
+                        @Html.TextBoxBuilder(m => m.Title2, "標題二")
+                    </div>
+                    <div>
+                        @*<p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>*@
+                        @Html.TextAreaBuilder(m => m.Content2, "內容二")
+                    </div>
+                    <div id="Link2" style="height:41px; min-height:18px;">
+                        @*<a href="/WoundCare"
+                               class="link"
+                               style="background-color: rgba(4, 59, 36, 0.15);">
+                                <span>Read More</span>
+                            </a>*@
+                        @Html.TextBoxBuilder(m => m.Link2, "連結二")
+                    </div>
+                </div>
+                <div class="col-md-3 box"
+                     style="background-color: rgba(9, 119, 71, 0.9);">
+                    <div>
+                        @*<h4 style="font-weight:bolder; margin-top: 5%;">Research & Use</h4>*@
+                        @Html.TextBoxBuilder(m => m.Title3, "標題三")
+                    </div>
+                    <div>
+                        @*<p>I'm a paragraph. Click here to add your own text and edit me. Let your users get to know you.</p>*@
+                        @Html.TextAreaBuilder(m => m.Content3, "內容三")
+                    </div>
+                    <div id="Link3" style="height:41px; min-height:18px;">
+                        @*<a href="/ResearchUse/Index_User"
+                               class="link"
+                               style="background-color: rgba(4, 59, 36, 0.15);">
+                                <span>Read More</span>
+                            </a>*@
+                        @Html.TextBoxBuilder(m => m.Link3, "連結三")
+                    </div>
+                </div>
             </div>
         </div>
     }
@@ -40,7 +110,7 @@
         var message = @Html.Raw(Json.Encode(TempData["message"]));
         if (message != null) {
             alert(message);
-            location.reload(true);
+            //location.reload(true);
         }
 
         loadimg();
@@ -51,6 +121,10 @@
             readURL(this);
             $('#preview, #previewimg').show();
             $('#HomePic').hide();
+        });
+
+        $('#btnCancel').on('click', function () {
+            location.reload();
         });
     });
 
@@ -68,3 +142,25 @@
         };
     }
 </script>
+
+<style>
+    .link {
+        position: absolute;
+        width: 40%;
+        height: 20%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        text-decoration: none;
+        color: white;
+    }
+
+    .box {
+        border: 0px;
+        display: grid;
+        color: white;
+        font-family: Arial,Helvetica,sans-serif;
+        margin: 0.5%;
+        height: 55%;
+    }
+</style>
